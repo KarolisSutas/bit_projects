@@ -82,6 +82,75 @@ else {
 echo '<hr><br>4 UZD<br><br>';
 // 4 UZD
 
+$a = rand(1, 10);
+$b = rand(1, 10);
+$c = rand(1, 10);
 
+echo "Pirma kraštine: $a";
+echo '<br>';
+echo "Antra kraštine: $b";
+echo '<br>';
+echo "Trečia kraštine: $c";
+echo '<br>';
+echo '<br><br>';
+
+
+if ($a + $b > $c && $a + $c > $b && $b + $c > $a) {
+    echo 'Trikampį sudaryti galima, kiekviena kraštinė yra trumpesnė už dviejų kitų kraštinių sumą';
+}
+else {
+    echo 'Negalima, viena iš kraštinių ilgesnė už kitų dviejų sumą';
+}
+
+echo '<hr><br>5 UZD<br><br>';
+// 5 UZD
+
+
+$pirmas = rand(0, 2);
+$antras = rand(0, 2);
+$trecias = rand(0, 2);
+$ketvirtas = rand(0, 2);
+
+echo "Pirmas skaicius: $pirmas";
+echo '<br>';
+echo "Antras skaicius: $antras";
+echo '<br>';
+echo "Trečias skaicius: $trecias";
+echo '<br>';
+echo "ketvirtas skaicius: $ketvirtas";
+echo '<br><br>';
+
+$nulis = 0;
+$vienas = 0;
+$du = 0;
+
+if ($pirmas == 0) $nulis++;
+if ($pirmas == 1) $vienas++;
+if ($pirmas == 2) $du++;
+
+if ($antras == 0) $nulis++;
+if ($antras == 1) $vienas++;
+if ($antras == 2) $du++;
+
+if ($trecias == 0) $nulis++;
+if ($trecias == 1) $vienas++;
+if ($trecias == 2) $du++;
+
+if ($ketvirtas == 0) $nulis++;
+if ($ketvirtas == 1) $vienas++;
+if ($ketvirtas == 2) $du++;
+
+echo "nulis = $nulis, vienas = $vienas, du = $du";
+
+echo '<hr><br>6 UZD<br><br>';
+// 6 UZD
+
+
+$skaicius = rand(1, 6);
+
+echo "<h3>gautas skaicius: $skaicius</h3>";
+
+echo '<hr><br>7 UZD<br><br>';
+// 7 UZD
 
 
