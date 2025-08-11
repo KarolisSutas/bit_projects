@@ -153,4 +153,139 @@ echo "<h3>gautas skaicius: $skaicius</h3>";
 echo '<hr><br>7 UZD<br><br>';
 // 7 UZD
 
+$sk1 = rand(-10, 10);
+$sk2 = rand(-10, 10);
+$sk3 = rand(-10, 10);
+
+if ($sk1 < 0) {
+    echo '<span style="color: green;">' . $sk1 . '</span> ';
+}
+elseif ($sk1 == 0) {
+    echo '<span style="color: red;">' . $sk1 . '</span> ';
+}
+else { 
+    echo '<span style="color: blue;">' . $sk1 . '</span> ';
+}
+if ($sk2 < 0) {
+    echo '<span style="color: green;">' . $sk2 . '</span> ';
+}
+elseif ($sk2 == 0) {
+    echo '<span style="color: red;">' . $sk2 . '</span> ';
+}
+else { 
+    echo '<span style="color: blue;">' . $sk2 . '</span> ';
+}
+if ($sk3 < 0) {
+    echo "<span style=\"color: green;\"> $sk3 </span> ";
+}
+elseif ($sk3 == 0) {
+    echo "<span style=\"color: red;\"> $sk3 </span> ";
+}
+else { 
+    echo "<span style=\"color: blue;\"> $sk3  </span> ";
+}
+
+echo '<hr><br>8 UZD<br><br>';
+// 8 UZD
+
+$kiekis = rand(5, 3000);
+echo "Kiekis: $kiekis vnt";
+echo "<br>";
+
+echo "Kaina: " . ($kaina = $kiekis * 2) . " Eur";
+echo "<br>";
+
+
+$nuolaida;
+
+if ($kiekis > 2000) {
+    $nuolaida = 4;
+} else if ($kiekis > 1000) {
+     $nuolaida= 3;
+} else {
+    $nuolaida = 0;
+}
+echo "Nuolaida: $nuolaida %";
+echo "<br>";
+
+function zvakKaina($kaina, $nuolaida) {
+    echo "Galutinė kaina " . ($kaina - ($kaina * $nuolaida / 100)) . " Eur";
+}
+
+zvakKaina($kaina, $nuolaida);
+
+echo '<hr><br>9 UZD<br><br>';
+// 9 UZD
+
+$jurgis = rand(0, 100);
+$antanas = rand(0, 100);
+$aloyzas = rand(0, 100);
+
+echo "Jurgio skaicius: $jurgis, Antano skaicius: $antanas, Aloyzo skaicius: $aloyzas";
+echo "<br>";
+
+
+$vidurkis = ($jurgis + $antanas + $aloyzas) / 3;
+$intVidurkis = intval($vidurkis);
+
+echo "Vidurkis: $intVidurkis";
+echo "<br>";
+echo "<br>";
+
+
+$koreguotaSuma = 0;
+$koreguotasKiekis = 0;
+
+if ($jurgis >= 10 && $jurgis <= 90) {
+    echo "Jurgio skaicius: $jurgis";
+    echo "<br>";
+    $koreguotaSuma += $jurgis;
+    $koreguotasKiekis++;
+}
+else {
+    echo "Jurgio skaicius atmestas";
+    echo "<br>";
+}
+if ($antanas >= 10 && $antanas <= 90) {
+    echo "Antano skaicius: $antanas";
+    echo "<br>";
+    $koreguotaSuma += $antanas;
+    $koreguotasKiekis++;
+}
+else {
+    echo "Antano skaicius atmestas";
+    echo "<br>";
+}
+if ($aloyzas >= 10 && $aloyzas <= 90) {
+    echo "Aloyzo skaicius: $aloyzas";
+    echo "<br>";
+    $koreguotaSuma += $aloyzas;
+    $koreguotasKiekis++;
+}
+else {
+    echo "Aloyzo skaicius atmestas";
+    echo "<br>";
+}
+
+if ($koreguotasKiekis > 0) {
+$koregVidurkis = $koreguotaSuma / $koreguotasKiekis;
+$intKoregVidurkis = intval($koregVidurkis);
+}
+else {
+    echo 'Visi broliai atmesti';
+}
+
+echo "Koreguotas vidurkis: $intKoregVidurkis";
+echo "<br>";
+echo "<br>";
+
+echo '<hr><br>10 UZD<br><br>';
+// 10 UZD
+
+$h = rand(1, 24);
+$min = rand(1, 60);
+$sec = rand(1, 60);
+$extraSec = rand(0, 300); // 0 iki 1 valandos
+
+echo "Laikas $h:$min:$sec";
 
