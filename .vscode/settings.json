@@ -11,7 +11,7 @@
             {
                 "scope": "entity.name.tag.html",
                 "settings": {
-                    "foreground": "#1ecdc4",
+                    "foreground": "#53b3e7",
                 }
             },
             {
