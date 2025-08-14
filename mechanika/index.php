@@ -49,6 +49,7 @@ if ($method == 'GET') {
         = <span><?= $sum ?></span>
         <hr>
         <button type="submit">+</button>
+        <span><a href="http://localhost/bit_projects/mechanika/" style="border: 1px solid black; background: WhiteSmoke; border-radius: 2px; display: flex; align-items: center; width: 22.5px; justify-content: center; text-decoration: none; color: black">X</a></span>
     </form>
 
 </body>
