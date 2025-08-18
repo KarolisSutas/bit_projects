@@ -4,16 +4,16 @@ require __DIR__ . '/Page.php';
 require __DIR__ . '/Article.php';
 require __DIR__ . '/Cart.php';
 
-// $article1 = new Article('5 dalykai');
-// $article2 = new Article('Didelis maisas su katem');
-// $article3 = new Article();
+$article1 = new Article('5 dalykai');
+$article2 = new Article('Didelis maisas su katem');
+$article3 = new Article();
 
 echo '<pre>';
 
 // var_dump($article1, $article2, $article3);
 
 // echo $article2->url;
-// protected jau nebesimato cia url
+// protected jau nebesimato cia url. Protected naudojamas kai norima kad nesimatytu isoreje bet galima butu pakeisti overaidint is kitu klasiu, seimos nariu.
 
 // // rasom klases varda, 4 vinys ir tada kintamojo vardas
 // echo Article::$score; 

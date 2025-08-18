@@ -1,0 +1,16 @@
+{
+    "name": "sutaskarolis/php6",
+    "description": "geras laikas",
+    "autoload": {
+        "psr-4": {
+            "Sutaskarolis\\Php6\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "KarolisSutas",
+            "email": "sutaskarolis@gmail.com"
+        }
+    ],
+    "require": {}
+}
