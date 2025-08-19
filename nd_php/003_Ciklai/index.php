@@ -45,7 +45,6 @@ $suma = 0;
 for ($i = 0; $i <= 300; $i++) {
    $skaiciai = rand(0, 300);
    
-   
    if ( $skaiciai >= 275) {
        echo "<span style=\"color: red;\"> $skaiciai </span> ";
       } else {
@@ -66,6 +65,7 @@ echo '<hr><br>3 UZD<br><br>';
 $aibe = rand(3000, 4000);
 
 for ($i = 1; $i <= $aibe; $i++) {
+    
     if ( $i % 77 == 0) {
         echo $i ;
         if ( $i + 77 <= $aibe) {
@@ -74,7 +74,42 @@ for ($i = 1; $i <= $aibe; $i++) {
     } 
 }
 
+echo '<hr><br>4 UZD<br><br>';
+// 4 UZD
+
+$simbolis = "";
+for ($i = 0; $i < 100; $i++) {
+    $simbolis .= str_repeat('*', 100). "<br>";
+}
+
+echo "<div class=\"kvadratas\"> $simbolis </div>";
+
+
+echo '<hr><br>6 UZD<br><br>';
+// 6 UZD
+
+do {
+
+    $HS = rand(0, 1);
+    echo $HS == 0 ? 'H' . '<br>': 'S' . '<br>';
+
+} while (!$HS == 0);
+echo '<br>';
+echo '<br>';
+echo '<br>';
+
+// $kiekis = 0;
+// do {
+
+//     $HS = rand(0, 1); 
+//     echo $HS == 0 ? 'H' . '<br>' : 'S' . '<br>';
+
+//     if ($HS == 'H') {
+//         $kiekis++;
+//     }
+
+// } while ($kiekis !== 3);
+
 
 ?>
 
- 

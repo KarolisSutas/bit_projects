@@ -7,15 +7,18 @@ namespace mano\vardas\toks; // tada nebereikia use, nes namespace pereina per fa
 // use mano\vardas\toks\Matematika; // shortcut, prie visu Matematika nebereik rasyti pilno vardo kelio
 use Driftas\Atvaizdavimas;
 use mano\vardas\toks\Atvaizdavimas as KitasAtvaizdavimas;
+use Ramsey\Uuid\Uuid;
 
 
 
-require __DIR__ . '/Planas.php';
-require __DIR__ . '/Planas2.php';
-require __DIR__ . '/Atvaizdavimas.php';
-require __DIR__ . '/Matematika.php';
-require __DIR__ . '/su/Atvaizdavimas.php';
+// require __DIR__ . '/Planas.php';
+// require __DIR__ . '/Planas2.php';
+// require __DIR__ . '/Atvaizdavimas.php';
+// require __DIR__ . '/Matematika.php';
+// require __DIR__ . '/su/Atvaizdavimas.php';
 
+
+require __DIR__ . '/vendor/autoload.php';
 $atv = new Matematika();
 
 $atv->atvaizduotiSuma(8, 3);
@@ -43,6 +46,9 @@ var_dump(
 );
 
 echo KitasAtvaizdavimas::ATV;
+echo '<br>';
+
+echo Uuid::uuid4();
 
 // const PI = 3.14159;
 

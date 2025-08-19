@@ -1,0 +1,16 @@
+{
+    "name": "sutaskarolis/nd_php",
+    "description": "Namu darbai",
+    "autoload": {
+        "psr-4": {
+            "namu\\darbai\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "KarolisSutas",
+            "email": "sutaskarolis@gmail.com"
+        }
+    ],
+    "require": {}
+}
