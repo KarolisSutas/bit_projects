@@ -84,3 +84,32 @@ echo '<br>';
 // Pakeičiame tipą į string
 settype($var, "string");
 var_dump($var);
+
+echo '<br>';
+echo '<br>';
+
+function print_info(array $info) {
+    print_r($info);
+    }
+    $my_info = array('name' => 'Vladi', 'age' => 33, 'gender' => 'M', 'job' =>
+    'Clever Techie');
+    print_info($my_info);
+
+    echo '<br>';
+    echo '<br>';
+    
+    class Animal
+    {
+    //set default property value, just for fun
+    public $sound = "Cows don't growl. ";
+    function make_sound( )
+    {
+    //$this = $cow object ($cow->sound)
+    // echo $this->sound;
+    }
+    }
+    $cow = new Animal;
+    echo $cow->sound;
+    $cow->sound = 'Moooooooo';
+    $cow->make_sound();
+    //output: Cows don't 
