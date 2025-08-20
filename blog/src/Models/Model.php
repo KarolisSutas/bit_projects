@@ -1,11 +1,12 @@
 <?php
 namespace Bebro\Blogas\Models;
+
 use PDO;
 
 class Model 
 {
 
-protected $pdo;
+    protected $pdo;
 
     public function __construct()
     {

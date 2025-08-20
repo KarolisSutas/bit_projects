@@ -2,7 +2,8 @@
 namespace Bebro\Blogas;
 
 use Bebro\Blogas\Controllers\AboutController;
-use Bebro\Blogas\Controllers\Article\Controller;
+use Bebro\Blogas\Controllers\ArticleController;
+use Bebro\Blogas\Controllers\RegisterController;
 
 class App 
 {

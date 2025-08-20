@@ -7,4 +7,8 @@
     <title><?= $title ?? 'Bebro Blogas' ?></title>
 </head>
 <body>
-    
+    <?php
+    if (($title ?? '') != '404 Not Found') {
+        include __DIR__ . '/menu.php';
+    }
+    ?>
