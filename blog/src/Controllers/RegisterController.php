@@ -2,7 +2,7 @@
 namespace Bebro\Blogas\Controllers;
 
 use Bebro\Blogas\App;
-// use Bebro\Blogas\Models\User;
+use Bebro\Blogas\Models\User;
 
 class RegisterController
 {
@@ -14,14 +14,17 @@ class RegisterController
 
     public function register()
     {
-        // Here you would typically handle the registration logic,
-        // such as validating input, saving to a database, etc.
-        // For now, we'll just simulate a successful registration.
+        $user = new User();
+        $user->username = $_POST['username']; 
+        $user->password = md5($_POST['password']); 
+        $user->store();
 
-        // Example: $user = new User($_POST['username'], $_POST['password']);
-        // $user->save();
-
-        // return App::view('register', ['message' => 'Registration successful!']);
+        return App::redirect('register', ['message' =>
+            [
+                'text' => 'Registration successful!',
+                'type' => 'success'
+            ]
+        ]);    
     }
 
 }

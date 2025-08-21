@@ -35,3 +35,9 @@ class Article extends Model
         return $stmt->fetch();
     }
 }
+
+// query() → SELECT be parametrų.
+
+// prepare() + execute() → SELECT/INSERT/UPDATE/DELETE su kintamaisiais.
+
+// exec() → INSERT/UPDATE/DELETE be rezultatų.

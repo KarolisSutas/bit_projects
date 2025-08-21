@@ -12,3 +12,4 @@
         include __DIR__ . '/menu.php';
     }
     ?>
+    <?php include __DIR__ . '/message.php' ?>
