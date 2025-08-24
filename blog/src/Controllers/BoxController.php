@@ -10,6 +10,9 @@ class BoxController
     public function index()
     {
         $boxes = Box::all();
+        if (!$boxes) {
+            return App::view('box/empty', ['title' => 'Bebro Blogas']);
+        }
         return App::view('box/index', ['boxes' => $boxes]);
     }
 

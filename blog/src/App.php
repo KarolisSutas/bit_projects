@@ -5,6 +5,7 @@ use Bebro\Blogas\Controllers\AboutController;
 use Bebro\Blogas\Controllers\ArticleController;
 use Bebro\Blogas\Controllers\RegisterController;
 use Bebro\Blogas\Controllers\BoxController;
+use Bebro\Blogas\Controllers\TreeController;
 
 class App 
 {
@@ -23,9 +24,12 @@ class App
     static private function route()
     {
         $uri = $_SERVER['REQUEST_URI']; 
-        $serverHome = '/bit_projects/blog/public';
+        $serverHome = '/bit_projects/blog/public'; 
     
-        $params = str_replace($serverHome, '', $uri);
+        $params = str_replace($serverHome, '', $uri); // ką keičiam, kuo keičiam, kur keičiam
+        // /bit_projects/blog/public/about => /about
+        // /bit_projects/blog/public/article/5 => /article/5
+        // /bit_projects/blog/public/ => /  
     
         $params = explode('/', $params);
         array_shift($params);
@@ -45,10 +49,19 @@ class App
             $method == 'POST' && count($params) === 3 && $params[0] === 'box' && $params[1] === 'update' => (new BoxController())->update((int)$params[2]),
             $method == 'POST' && count($params) === 3 && $params[0] === 'box' && $params[1] === 'delete' => (new BoxController())->delete((int)$params[2]),
             
+            //tree CRUD
+            $method == 'GET' && count($params) === 1 && $params[0] === 'tree' => (new TreeController())->index(),
+            $method == 'GET' && count($params) === 2 && $params[0] === 'tree' && $params[1] === 'create' => (new TreeController())->create(),
+            $method == 'GET' && count($params) === 3 && $params[0] === 'tree' && $params[1] === 'edit' => (new TreeController())->edit((int)$params[2]),
+            $method == 'POST' && count($params) === 2 && $params[0] === 'tree' && $params[1] === 'store' => (new TreeController())->store(),
+            $method == 'POST' && count($params) === 3 && $params[0] === 'tree' && $params[1] === 'update' => (new TreeController())->update((int)$params[2]),
+            $method == 'POST' && count($params) === 3 && $params[0] === 'tree' && $params[1] === 'delete' => (new TreeController())->delete((int)$params[2]),
+
             // register CRUD
             $method == 'GET' && count($params) === 1 && $params[0] === 'register' => (new RegisterController())->show(),
             $method == 'POST' && count($params) === 1 && $params[0] === 'register' => (new RegisterController())->register(),
             
+            // articles CRUD
             count($params) === 1 && $params[0] === '' => (new ArticleController())->index(),            
             count($params) === 1 && $params[0] === 'about' => (new AboutController())->index(),            
             count($params) === 2 && $params[0] === 'article' => (new ArticleController())->show((int)$params[1]),            
