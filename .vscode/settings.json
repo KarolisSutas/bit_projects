@@ -2,6 +2,12 @@
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
+                "scope": "support.other.namespace.php",
+                "settings": {
+                  "foreground": "#afaca8",   // tavo spalva
+                }
+            },
+            {
                 "scope": "comment",
                 "settings": {
                     "foreground": "#398d39",
@@ -28,22 +34,20 @@
             },
             {
                 "scope": [
-                  "keyword.operator",        // bendri operatoriai (pvz., = + - * / > <)
-                  "keyword.operator.arithmetic",
-                  "keyword.operator.assignment",
-                  "keyword.operator.comparison"
+                    "keyword.operator", // bendri operatoriai (pvz., = + - * / > <)
+                    "keyword.operator.arithmetic",
+                    "keyword.operator.assignment",
+                    "keyword.operator.comparison"
                 ],
                 "settings": {
-                  "foreground": "#e74ee5",   // pasirink savo spalvą (pvz., fuksinė)
-                  "fontStyle": ""
+                    "foreground": "#e74ee5", // pasirink savo spalvą (pvz., fuksinė)
+                    "fontStyle": ""
                 }
             }
         ]
     },
     "workbench.colorTheme": "Firefox Quantum Dark",
-    "workbench.colorCustomizations": {   
-    "tab.activeBorder": "#ffff00",         
+    "workbench.colorCustomizations": {
+        "tab.activeBorder": "#ffff00",
+    }
 }
-
-}
-

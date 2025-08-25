@@ -6,6 +6,9 @@ use Bebro\Blogas\Controllers\ArticleController;
 use Bebro\Blogas\Controllers\RegisterController;
 use Bebro\Blogas\Controllers\BoxController;
 use Bebro\Blogas\Controllers\TreeController;
+use Bebro\Blogas\Controllers\LoginController;
+use Bebro\Blogas\Controllers\ColorController;
+use Bebro\Blogas\Services\Auth;
 
 class App 
 {
@@ -36,9 +39,32 @@ class App
 
         $method = $_SERVER['REQUEST_METHOD'];
 
+        if ($params[0] === 'box' && !Auth::check()) {
+            return App::redirect('login', ['message' =>
+                [
+                    'text' => 'You must be logged in to access this page.',
+                    'type' => 'error'
+                ]
+            ]);
+        }
+
+         if ($params[0] === 'tree' && !Auth::check()) {
+            return App::redirect('login', ['message' =>
+                [
+                    'text' => 'You must be logged in to access this page.',
+                    'type' => 'error'
+                ]
+            ]);
+        }
+
 
         return match(true) 
         {
+
+            // color API
+
+            $method == 'GET' && count($params) === 1 && $params[0] === 'color' => (new ColorController())->index(),
+            $method == 'POST' && count($params) === 1 && $params[0] === 'color' => (new ColorController())->getName(),
 
             //box CRUD
 
@@ -61,6 +87,10 @@ class App
             $method == 'GET' && count($params) === 1 && $params[0] === 'register' => (new RegisterController())->show(),
             $method == 'POST' && count($params) === 1 && $params[0] === 'register' => (new RegisterController())->register(),
             
+            // login CRUD
+            $method == 'GET' && count($params) === 1 && $params[0] === 'login' => (new LoginController())->show(),
+            $method == 'POST' && count($params) === 1 && $params[0] === 'login' => (new LoginController())->login(),
+            $method == 'POST' && count($params) === 1 && $params[0] === 'logout' => (new LoginController())->logout(),
             // articles CRUD
             count($params) === 1 && $params[0] === '' => (new ArticleController())->index(),            
             count($params) === 1 && $params[0] === 'about' => (new AboutController())->index(),            
@@ -74,7 +104,7 @@ class App
     {
         extract($data); // sukuria kintamuosius is masyvo data['text] ==> $text
         $url = self::URL;
-        $flash = $_SESSION['flash'] ?? [];
+        $flash = $_SESSION['flash'] ?? []; // nuskaitom žinutę iš sesijos
         unset($_SESSION['flash']);
 
         ob_start(); // ijungiamas buferis
@@ -86,7 +116,7 @@ class App
 
     public static function redirect(string $url, array $data = []) : string
     {
-        $_SESSION['flash'] = $data;
+        $_SESSION['flash'] = $data; // įrašome žinutę į sesijos kintamąjį
 
         header('Location: ' . self::URL . $url);
         return '';

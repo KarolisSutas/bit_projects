@@ -4,6 +4,7 @@ namespace Bebro\Blogas\Controllers;
 
 use Bebro\Blogas\App;
 use Bebro\Blogas\Models\Box;
+use Bebro\Blogas\Services\Auth;
 
 class BoxController
 {
@@ -18,6 +19,15 @@ class BoxController
 
     public function create()
     {
+        // if (!Auth::check()) {
+        //     return App::redirect('login', ['message' =>
+        //         [
+        //             'text' => 'You must be logged in to create a box.',
+        //             'type' => 'error'
+        //         ]
+        //     ]);
+        // }
+
         return App::view('box/create');
     }
 

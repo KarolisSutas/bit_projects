@@ -5,6 +5,7 @@ namespace Bebro\Blogas\Models;
 class Tree extends Model
 {
     public $name;
+    public ?int $id = null;
 
     static public function all(): array
     {
@@ -28,14 +29,14 @@ class Tree extends Model
         $data = $stmt->fetch();
 
         if (!$data) {
-            return '';
+            return null;
         }
 
-        $box = new self();
-        $box->id = $data['id'];
-        $box->count = $data['name'];
+        $tree = new self();
+        $tree->id = (int) $data['id'];
+        $tree->name = (string) $data['name'];
 
-        return $box;
+        return $tree;
     }
 
     public function __construct()

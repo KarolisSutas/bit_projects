@@ -5,6 +5,7 @@ namespace Bebro\Blogas\Models;
 class Box extends Model
 {
     public $count;
+    public ?int $id = null;
 
     static public function all(): array
     {
