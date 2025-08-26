@@ -75,6 +75,14 @@ class App
             $method == 'POST' && count($params) === 3 && $params[0] === 'box' && $params[1] === 'update' => (new BoxController())->update((int)$params[2]),
             $method == 'POST' && count($params) === 3 && $params[0] === 'box' && $params[1] === 'delete' => (new BoxController())->delete((int)$params[2]),
             
+            // article CRUD
+            $method == 'GET' && count($params) === 1 && $params[0] === 'article' => (new ArticleController())->index(),
+            $method == 'GET' && count($params) === 2 && $params[0] === 'article' && $params[1] === 'create' => (new ArticleController())->create(),
+            $method == 'GET' && count($params) === 3 && $params[0] === 'article' && $params[1] === 'edit' => (new ArticleController())->edit((int)$params[2]),
+            $method == 'POST' && count($params) === 2 && $params[0] === 'article' && $params[1] === 'store' => (new ArticleController())->store(),
+            $method == 'POST' && count($params) === 3 && $params[0] === 'article' && $params[1] === 'update' => (new ArticleController())->update((int)$params[2]),
+            $method == 'POST' && count($params) === 3 && $params[0] === 'article' && $params[1] === 'delete' => (new ArticleController())->delete((int)$params[2]),
+
             //tree CRUD
             $method == 'GET' && count($params) === 1 && $params[0] === 'tree' => (new TreeController())->index(),
             $method == 'GET' && count($params) === 2 && $params[0] === 'tree' && $params[1] === 'create' => (new TreeController())->create(),
@@ -91,6 +99,7 @@ class App
             $method == 'GET' && count($params) === 1 && $params[0] === 'login' => (new LoginController())->show(),
             $method == 'POST' && count($params) === 1 && $params[0] === 'login' => (new LoginController())->login(),
             $method == 'POST' && count($params) === 1 && $params[0] === 'logout' => (new LoginController())->logout(),
+           
             // articles CRUD
             count($params) === 1 && $params[0] === '' => (new ArticleController())->index(),            
             count($params) === 1 && $params[0] === 'about' => (new AboutController())->index(),            

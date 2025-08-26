@@ -6,14 +6,13 @@ use Bebro\Blogas\Models\Article;
 
 class ArticleController
 {
-    // 1.
+
     public function index(): string
     {
-        $articles = (new Article())->index();
+        $articles = Article::all();
         return App::view('articles/index', ['articles' => $articles, 'title' => 'Articles List']);
     }
-    
-    // 2.
+
     public function show(int $id) : string
     {
         
@@ -21,26 +20,92 @@ class ArticleController
             return App::view('404', ['title' => '404 Not Found']);
         }
 
-        $article = (new Article())->show($id);
+        $article = Article::find($id);
 
         if (!$article) {
             return App::view('404', ['title' => '404 Not Found']);
         }
 
-        return App::view('articles/show', ['article' => $article, 'title' => $article['title']]);
+        return App::view('articles/show', ['article' => $article, 'title' => $article->title]);
+    }
+
+    public function create(): string
+    {
+        return App::view('articles/create', ['title' => 'Create Article']);
+    }
+
+    public function store()
+    {
+        $article = new Article();
+        $article->title = $_POST['title'] ?? '';
+        $article->content = $_POST['content'] ?? '';
+        $article->author = $_POST['author'] ?? '';
+        $article->image = $_FILES['image'] ?? null;
+
+        if ($article->image) {
+            $article->image = $this->uploadImage($article->image);
+        }
+
+        $article->store();
+
+        return App::redirect('', ['message' =>
+            [
+                'text' => 'Article created successfully!',
+                'type' => 'success'
+            ]
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $article = Article::find($id);
+        if (!$article) {
+            return App::view('404', ['title' => 'Article Not Found']);
+        }
+
+        if ($article->image) {
+            $this->deleteImage($article->image);
+        }
+
+        $article->delete($id);
+
+        return App::redirect('article', ['message' =>
+            [
+                'text' => 'Article deleted successfully!',
+                'type' => 'success'
+            ]
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $article = Article::find($id);
+        if (!$article) {
+            return App::view('404', ['title' => 'Article Not Found']);
+        }
+        return App::view('articles/edit', ['article' => $article]);
+    }
+
+    private function deleteImage(string $image): void
+    {
+        $imagePath = __DIR__ . '/../../public/' . $image;
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+    }
+
+    private function uploadImage(array $image): string
+    {
+        $targetDir = __DIR__ . '/../../public/images/';
+
+        $fileName = rand(1000000, 9999999) . basename($image['name']);
+        $targetFilePath = $targetDir . $fileName;
+
+        // Move to folder
+        if (move_uploaded_file($image['tmp_name'], $targetFilePath)) {
+            return 'images/' . $fileName; // Return relative path for database storage
+        }
+
+        return '';
     }
 }
-
-// 1. 
-// Sukuriamas naujas Article modelis → kviečiamas jo metodas index(), kuris iš DB paima visus straipsnius.
-// Duomenys perduodami į view failą articles/index (pvz. views/articles/index.php).
-// Į view paduodamas masyvas: visi straipsniai ir puslapio antraštė "Articles List".
-// Čia rodoma straipsnių sąrašas (pvz., /article arba /).
-
-// 2. 
-// Metodas (public function show(int $id) : string) gauna $id (pvz. /article/1 → $id = 1).
-// Jei $id tuščias → grąžina 404.
-// Kviečia Article->show($id), kuris iš DB paima straipsnį pagal ID.
-// Jei straipsnis nerastas → grąžina 404.
-// Jei rastas → perduoda straipsnį į view failą articles/show.
-// Čia rodoma vieno straipsnio detalė (pvz., straipsnio pavadinimas ir turinys).

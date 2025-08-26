@@ -7,4 +7,5 @@
         <input type="password" name="password" required>
     </label>
     <button type="submit">Login</button>
+    <p>Not a member? Register<a href="<?= $url ?>register"> here</a></p>
 </form>

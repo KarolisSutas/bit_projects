@@ -6,6 +6,12 @@ body {
     padding: 20px;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 .article-container {
     background: #fff;
     max-width: 700px;
@@ -123,7 +129,7 @@ ul.menu li {
 
 
 form {
-    max-width: 400px;
+    max-width: 500px;
     margin: 32px auto;
     background: #fff;
     padding: 28px 32px;
@@ -141,6 +147,8 @@ form label {
     display: block;
 }
 
+form textarea,
+form input,[type="file"],
 form input[type="text"],
 form input[type="email"],
 form input[type="password"] {
@@ -152,6 +160,10 @@ form input[type="password"] {
     background: #fafbfc;
     transition: border 0.2s;
     margin-top: 4px;
+}
+
+textarea {
+    height: 200px;
 }
 
 form input:focus {
@@ -197,4 +209,51 @@ form button[type="submit"]:hover {
 .alert-info {
     background: #d1ecf1;
     color: #0c5460;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 12px 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+ 
+.buttons form {
+    display: inline;
+    max-width: unset;
+    margin: 0;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+ 
+}
+.buttons a,
+.buttons form button {
+    background: #155724;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1.08em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+ 
+.buttons form a:hover,
+.buttons form button:hover {
+    background: #0d993c;
 }
