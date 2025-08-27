@@ -59,6 +59,19 @@ class Article extends Model
         $stmt->execute([$this->title, $this->content, $this->author, $this->image]);
     }
 
+
+    public function update($id)
+    {
+        $sql = '
+            UPDATE articles
+            SET title = ?, content = ?, author = ?, image = ?
+            WHERE id = ?
+        ';
+ 
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$this->title, $this->content, $this->author, $this->image, $id]);
+    }
+
     public function delete($id)
     {
         $sql = '

@@ -57,6 +57,15 @@ class App
             ]);
         }
 
+        if ($params[0] === 'article' && !Auth::check()) {
+            return App::redirect('login', ['message' =>
+                [
+                    'text' => 'You must be logged in to access this page.',
+                    'type' => 'error'
+                ]
+            ]);
+        }
+
 
         return match(true) 
         {

@@ -86,6 +86,42 @@ class ArticleController
         return App::view('articles/edit', ['article' => $article]);
     }
 
+    public function update($id)
+    {
+        $article = Article::find($id);
+        if (!$article) {
+            return App::view('404', ['title' => 'Article Not Found']);
+        }
+ 
+        $oldImage = $article->image ?? '';
+ 
+        $article->title = $_POST['title'] ?? '';
+        $article->content = $_POST['content'] ?? '';
+        $article->author = $_POST['author'] ?? '';
+        $article->image = $_FILES['image'] ?? null;
+        $deleteImage = isset($_POST['delete_image']) ? (bool)$_POST['delete_image'] : false;
+ 
+        if ($article->image) {
+            $this->deleteImage($oldImage);
+            $article->image = $this->uploadImage($article->image);
+        } elseif ($deleteImage) {
+            $this->deleteImage($oldImage);
+            $article->image = null;
+        } else {
+            $article->image = $oldImage;
+        }
+ 
+        $article->update($id);
+ 
+        return App::redirect('article', ['message' =>
+            [
+                'text' => 'Article updated successfully!',
+                'type' => 'success'
+            ]
+        ]);
+    }
+ 
+
     private function deleteImage(string $image): void
     {
         $imagePath = __DIR__ . '/../../public/' . $image;
@@ -93,6 +129,8 @@ class ArticleController
             unlink($imagePath);
         }
     }
+
+    
 
     private function uploadImage(array $image): string
     {
