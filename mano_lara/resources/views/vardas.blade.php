@@ -7,7 +7,7 @@
   
     </head>
     <body>
-        <h1>Welcome to laravel!</h1>
+        <h1>Laba diena laravel!</h1>
     </body>
 </html>
 
