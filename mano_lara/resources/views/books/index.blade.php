@@ -23,8 +23,11 @@
                                     <td>{{ $book->author }}</td>
                                     <td>{{ $book->pages }}</td>
                                     <td>
-                                        <a href="{{ route('books-edit', $book->id) }}" class="btn btn-warning me-2">Edit</a>
-                                        <a href="{{ route('books-delete', $book->id) }}" class="btn btn-danger">Delete</a>                                    </td>
+                                        @if (auth()->user() && auth()->user()->role === 'Admin')
+                                            <a href="{{ route('books-edit', $book->id) }}" class="btn btn-warning me-2">Edit</a>
+                                        @endif
+                                        <a href="{{ route('books-delete', $book->id) }}" class="btn btn-danger">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

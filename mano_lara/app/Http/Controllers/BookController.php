@@ -7,7 +7,6 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
-
     // public function __construct()
     // {
     //     $this->middleware('auth');
@@ -32,6 +31,12 @@ class BookController extends Controller
 
     public function edit($id)
     {
+        $user = auth()->user();
+
+        if (!$user || $user->role !== 'Admin') {
+            abort(403);
+        }
+
         $book = Book::find($id);
         return view('books.edit', ['book' => $book]);
     }
