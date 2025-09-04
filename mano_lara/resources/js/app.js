@@ -8,12 +8,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.addEventListener('DOMContentLoaded', _ => {
     const listBin = document.querySelector('[data-list-bin]');
     const bodyBin = document.querySelector('[data-body-bin]');
+    const modalBin = document.querySelector('[data-modal-bin]');
     if (!listBin || !bodyBin) return;
 
 
     const addlistEvent = _ => {
         const listUrl = listBin.dataset.listUrl;
+        getList(listUrl);
+ 
+    };
 
+    const getList = listUrl => {
         axios.get(listUrl)
             .then(response => {
                 if (response.data.success) {
@@ -47,6 +52,36 @@ window.addEventListener('DOMContentLoaded', _ => {
                     console.error('Error fetching author create form:', error);
                 });
         });
+
+        const deleteBtns = listBin.querySelectorAll('[data-action="delete"]');
+        deleteBtns.forEach(btn => {
+            btn.addEventListener('click', _ => {
+                const url = btn.dataset.actionUrl;
+                axios.get(url)
+                    .then(response => {
+                        if (response.data.success) {
+                            modalBin.innerHTML = response.data.html;
+                            addDeleteEvent();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error deleting author:', error);
+                    });
+            });
+        });
+
+        const paginator = listBin.querySelector('[data-paginator]');
+        
+        if (paginator) {
+            const links = paginator.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    const url = link.getAttribute('href');
+                    getList(url);
+                });
+            });
+        }
     };
 
     const addStoreEvent = _ => {
@@ -78,5 +113,24 @@ window.addEventListener('DOMContentLoaded', _ => {
                 });
         });
     };
+
+    const addDeleteEvent = _ => {
+        const deleteBtn = modalBin.querySelector('[data-action="delete"]');
+        if (!deleteBtn) return;
+ 
+        deleteBtn.addEventListener('click', _ => {
+            const url = deleteBtn.dataset.actionUrl;
+            axios.delete(url)
+                .then(response => {
+                    if (response.data.success) {
+                        modalBin.innerHTML = '';
+ 
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting author:', error);
+                });
+        });
+    }; 
 
 });

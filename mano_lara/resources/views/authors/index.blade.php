@@ -7,4 +7,5 @@
         <div class="col-md-7" data-body-bin></div>
     </div>
 </div>
+<div data-modal-bin></div>
 @endsection

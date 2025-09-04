@@ -16,7 +16,7 @@ class AuthorController extends Controller
     {
         // sleep(2);
 
-        $authors = Author::orderBy('id', 'desc')->get();
+        $authors = Author::orderBy('id', 'desc')->paginate(7);
 
         $list = view('authors.list')->with('authors', $authors)->render();
         
@@ -44,6 +44,18 @@ class AuthorController extends Controller
 
         return response()->json([
             'success' => true
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $author = Author::find($id);
+ 
+        $modal = view('authors.delete')->with('author', $author)->render();
+ 
+        return response()->json([
+            'success' => true,
+            'html' => $modal
         ]);
     }
 
