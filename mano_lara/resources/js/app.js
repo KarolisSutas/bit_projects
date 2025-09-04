@@ -70,6 +70,53 @@ window.addEventListener('DOMContentLoaded', _ => {
             });
         });
 
+        const editBtns = listBin.querySelectorAll('[data-action="edit"]');
+        editBtns.forEach(btn => {
+            btn.addEventListener('click', _ => {
+                const url = btn.dataset.actionUrl;
+                axios.get(url)
+                    .then(response => {
+                        if (response.data.success) {
+                            bodyBin.innerHTML = response.data.html;
+                            addEditEvent();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching author edit form:', error);
+                    });
+            });
+        });
+
+        const addEditEvent = _ => {
+            const updateBtn = document.querySelector('[data-action="update"]');
+            const cancelBtn = document.querySelector('[data-action="cancel"]');
+            if (!updateBtn) return;
+     
+            cancelBtn?.addEventListener('click', _ => {
+                bodyBin.innerHTML = '';
+            });
+     
+            updateBtn.addEventListener('click', _ => {
+                const url = updateBtn.dataset.actionUrl;
+                const form = bodyBin.querySelector('form');
+                if (!form) return;
+                const data = {};
+                new FormData(form).forEach((value, key) => {
+                    data[key] = value;
+                });
+                axios.put(url, data)
+                    .then(response => {
+                        if (response.data.success) {
+                            bodyBin.innerHTML = '';
+                            addlistEvent();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error updating author:', error);
+                    });
+            });
+        };
+
         const paginator = listBin.querySelector('[data-paginator]');
         
         if (paginator) {
@@ -124,13 +171,21 @@ window.addEventListener('DOMContentLoaded', _ => {
                 .then(response => {
                     if (response.data.success) {
                         modalBin.innerHTML = '';
- 
+                        addlistEvent();
                     }
                 })
                 .catch(error => {
                     console.error('Error deleting author:', error);
                 });
         });
+
+        const cancelBtn = modalBin.querySelectorAll('[data-dismiss="modal"]');
+        cancelBtn.forEach(btn => {
+            btn.addEventListener('click', _ => {
+                modalBin.innerHTML = '';
+            });
+        }); 
+       
     }; 
 
 });

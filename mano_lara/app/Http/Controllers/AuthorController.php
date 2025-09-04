@@ -59,4 +59,31 @@ class AuthorController extends Controller
         ]);
     }
 
+    public function destroy(Author $author)
+    {
+        $author->delete();
+ 
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function edit(Author $author)
+    {
+        $form = view('authors.edit')->with('author', $author)->render();
+        return response()->json([
+            'html' => $form,
+            'success' => true
+        ]);
+    }
+
+    public function update(Request $request, Author $author)
+    {
+        $author->update($request->all());
+ 
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
 }
