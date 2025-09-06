@@ -22,7 +22,8 @@
                     <td>{{ $author->birth_year }}</td>
                     <td>
                         <button data-action="edit" data-action-url="{{ route('authors-edit', $author->id) }}" class="btn btn-warning me-2">Edit</button>
-                        <button data-action="delete" data-action-url="{{ route('authors-delete', $author->id) }}" class="btn btn-danger">Delete</button>                    </td>
+                        <button data-action="delete" data-action-url="{{ route('authors-delete', $author->id) }}" class="btn btn-danger">Delete</button> 
+                   </td>
                 </tr>
                 @endforeach
             </tbody>
