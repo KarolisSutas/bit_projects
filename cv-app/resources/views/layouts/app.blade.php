@@ -5,127 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laravel Task List App</title>
-    @yield('styles')
-    <style>
-            a {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        margin: 0.3rem 0;
-        color: white;
-        background-color: #4b3ea2d4;
-        text-decoration: none;
-        border-radius: 6px;
-        transition: background-color 0.3s ease, transform 0.2s ease;
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+    {{--blad-formatter-disable --}}
+    <style type="text/tailwindcss">
+    .btn {
+        @apply rounded-md px-2 py-1 text-center font-medium text-emerald-700 shadow-sm ring-1 ring-emerald-700/10 hover:bg-emerald-200
     }
-
-    a:hover {
-        background-color: #1e3799;
-        transform: translateY(-2px);
+    .link {
+        @apply font-medium text-gray-700 underline decoration-pink-500
     }
-
-    a:active {
-        background-color: #3c6382;
-        transform: translateY(0);
-    }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        header {
-            background: linear-gradient(45deg , #792b87, #49a764, #c24518);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .task-form {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-    .form-group {
-        margin-bottom: 1.5rem;
-}
-
     label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        color: #333;
-}
-
-    input[type="text"],
-    textarea {
-        width: 100%;
-        padding: 0.7rem;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 1rem;
-        transition: border-color 0.3s ease;
-}
-
-    input[type="text"]:focus,
-    textarea:focus {
-        border-color: #4a69bd;
-        outline: none;
-}
-
-    .form-actions {
-        text-align: right;
-}
-
-    button {
-        background: linear-gradient(45deg , #792b87, #49a764, #c24518);
-        color: white;
-        padding: 0.7rem 1.5rem;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-    button:hover {
-        background: linear-gradient(45deg , #5a2164, #327344, #8d3211);
-        transform: translateY(-1px);
-}
-
-
+        @apply block uppercase text-slate-700 mb-2
+    }
+    input, textarea {
+        @apply shadow-sm appearance-none border w-full py-2 px-3 text-slate-700 leading-tight focus:outline-none
+    }
+    h1 {
+        @apply text-slate-950 mb-4 text-2xl
+    }
+    .error {
+        @apply text-red-500 text-sm
+    }
     </style>
+    {{--blad-formatter-enable --}}
+
+    @yield('styles')
+
 </head>
-<body>
+<body class="container mx-auto mt-10 mb-10 max-w-lg">
     <header>
         <h1>@yield('title')</h1>
     </header>
 
-    <div class="container">
+    <div x-data="{ flash: true }">
         @if (session()->has('success'))
-            <div>{{ session('success') }}</div>
+        <div x-show="flash"
+        class="relative mb-10 rounded border border-green-400 bg-green-100 px-4 py-3 text-lg text-green-700"
+        role="alert">
+        <strong class="font-bold">Success!</strong>
+        <div>{{ session('success') }}</div>
+
+        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" @click="flash = false"
+            stroke="currentColor" class="h-6 w-6 cursor-pointer">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </span>
+    </div>
+            
         @endif
+
         @yield('content')
     </div>
 </body>
