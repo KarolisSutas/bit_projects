@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             DB::table('books')->insert([
                 'title' => $faker->sentence(3),
                 'pages' => $faker->numberBetween(100, 1000),
-                'author' => $faker->firstName . ' ' . $faker->lastName,
+                'author_id' => $faker->numberBetween(1, 30),
                 'description' => $faker->text(300),
             ]);
         }

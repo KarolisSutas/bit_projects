@@ -58,8 +58,7 @@
                             @foreach ($books as $book)
                                 <tr>
                                     <td>{{ $book->title }}</td>
-                                    <td>{{ $book->author }}</td>
-                                    <td>{{ $book->pages }}</td>
+                                    <td>{{ $book->author->name . ' ' . $book->author->lastname }}</td>                                    <td>{{ $book->pages }}</td>
                                     <td>
                                         @if (auth()->user() && auth()->user()->role === 'Admin')
                                             <a href="{{ route('books-edit', $book->id) }}" class="btn btn-warning me-2">Edit</a>

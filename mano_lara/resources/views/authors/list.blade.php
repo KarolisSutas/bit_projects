@@ -22,7 +22,11 @@
                     <td>{{ $author->birth_year }}</td>
                     <td>
                         <button data-action="edit" data-action-url="{{ route('authors-edit', $author->id) }}" class="btn btn-warning me-2">Edit</button>
-                        <button data-action="delete" data-action-url="{{ route('authors-delete', $author->id) }}" class="btn btn-danger">Delete</button> 
+                        @if($author->books()->count() > 0)
+                        <span class="text-danger me-2">Cannot delete author with books</span>
+                        @else
+                        <button data-action="delete" data-action-url="{{ route('authors-delete', $author->id) }}" class="btn btn-danger">Delete</button>
+                        @endif
                    </td>
                 </tr>
                 @endforeach

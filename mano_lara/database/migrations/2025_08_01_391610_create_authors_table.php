@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastname');
-            $table->string('birth_year');
+            $table->year('birth_year');
             $table->timestamps();
         });
     }

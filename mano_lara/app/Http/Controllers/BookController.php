@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBookRequest;
 use App\Models\Book;
+use App\Models\Author;
 
 class BookController extends Controller
 {
@@ -16,38 +18,34 @@ class BookController extends Controller
     {
         // $books = Book::orderBy('id', 'desc')->paginate(7);
         
-        // objektas kuriame irasyta duomenu bazes uzklausa Book::orderBy('id', 'desc')
-        // get uzklausa ivykdo ir gaunama kolekcija. Objektas kuris turi geru savybiu papildomu:
-
-        // dd(Book::orderBy('id', 'desc')->get()->map(fn($b) => $b->pages)->filter(fn($p) => $p > 200)->count()); // dd debug and die. 
-        
-        //formuojama uzklausa, get arba paginate vykdo uzklausa
+        // dd(Book::orderBy('id', 'desc')->get()->map(fn($b) => $b->pages)->filter(fn($p) => $p > 200)->count());
 
         $sort = $request->input('sort');
         $show_all = $request->input('show_all') ?? 0;
         $min_pages = $request->input('min_pages') ?? 100;
 
         $sql = Book::query();
- 
+
         $sql = match($sort) {
-            'author' => $sql->orderBy('author'),
+            'author' => $sql->join('authors', 'books.author_id', '=', 'authors.id')
+                            ->orderBy('authors.name')
+                            ->select('books.*'),
             'title' => $sql->orderBy('title'),
             'pages' => $sql->orderBy('pages'),
             default => $sql,
         };
-        
+
         if ($min_pages) {
-            // $sql = $sql->where('pages', '>=', $min_pages); 
+            // $sql = $sql->where('pages', '>=', $min_pages);
             $sql = $sql->whereRaw('pages >= ?', [$min_pages]);
         }
 
         if ($show_all) {
-             $books = $sql->get();
+            $books = $sql->get();
         } else {
             $books = $sql->paginate(7)->withQueryString();
         }
-
-        // $books = $sql->get();
+        
 
         return view('books.index', [
             'books' => $books,
@@ -59,12 +57,13 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('books.create');
+        $authors = Author::orderBy('name')->get();
+        return view('books.create', ['authors' => $authors]);
     }
 
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        Book::create($request->all());
+        Book::create($request->validated());
         return redirect()->route('books-index');
     }
 
@@ -76,8 +75,9 @@ class BookController extends Controller
             abort(403);
         }
 
+        $authors = Author::all();
         $book = Book::find($id);
-        return view('books.edit', ['book' => $book]);
+        return view('books.edit', ['book' => $book, 'authors' => $authors]);
     }
 
     public function update(Request $request, $id)
