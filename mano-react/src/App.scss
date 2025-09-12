@@ -42,117 +42,77 @@
 }
 
 .sq-bin {
-
   width: 80%;
-
   display: flex;
-
-  gap: 30px;
-
+  gap: 20px;
   flex-wrap: wrap;
-
   margin: 30px;
-
- 
 
   .sq {
 
     width: 100px;
-
     height: 100px;
-
     background-color: orange;
-
     border-radius: 20px;
-
     box-shadow: 0 0 10px black;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     font-size: 30px;
-
     color: white;
-
     cursor: pointer;
-
     user-select: none;
-
     transition: 0.3s;
+
+  &.spin {
+    animation: logo-spin infinite 5s linear;
+  }
 
  
 
     &:hover {
-
       transform: scale(1.1);
-
       box-shadow: 0 0 20px black;
-
     }
 
   }
+
 
 }
 
 
 .sq-bin {
-
   width: 80%;
-
   display: flex;
-
   gap: 30px;
-
   flex-wrap: wrap;
-
   margin: 30px;
 
  
 
   .sq {
-
     width: 100px;
-
     height: 100px;
-
     background-color: #808080;
-
     border: 3px solid #80808080;
-
     border-radius: 20px;
-
     box-shadow: 0 0 10px black;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     font-size: 30px;
-
     color: white;
-
     cursor: pointer;
-
     user-select: none;
-
     transition: 0.3s;
 
- 
-
     &:hover {
-
       transform: scale(1.1);
-
       box-shadow: 0 0 20px black;
-
     }
 
   }
+
 
 }
 
