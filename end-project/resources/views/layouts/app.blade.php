@@ -20,10 +20,11 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script> --}} 
     {{-- 'resources/css/app.css', --}}
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-success bg-gradient text-white bg-opacity-75 shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-teal bg-gradient text-white bg-opacity-75 shadow-sm">
             <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand text-indigo" href="{{ route('main') }}">
+                    <img class="logo" src="{{ asset('images/logo.png') }}" alt="Logo">
+                    Hope Fund
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -33,10 +34,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li>
-                            Story list
+                            <a class="nav-link text-white" href="">Create story</a>
                         </li>
                         <li>
-                            Admin
+                            <a class="nav-link text-white" href="">My stories</a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-white" href="">Story Dashboard</a>
                         </li>
                     </ul>
 
