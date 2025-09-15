@@ -10,6 +10,9 @@ export default function App() {
 
   const [books, setBooks] = useState(null);
 
+  const [storeBooks, setStoreBooks] = useState(null);
+
+
 
   useEffect(_ => {
     axios.get(URL + '/books')
@@ -26,7 +29,7 @@ export default function App() {
         <div className="container">
                 <div className="row">
                     <div className="col-4">
-                        <Create/>
+                        <Create setStoreBooks={setStoreBooks}/>
                     </div>
                     <div className="col-8">
                         <List books={books}/>
