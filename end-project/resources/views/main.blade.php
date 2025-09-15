@@ -54,7 +54,7 @@
   </div>
 
     {{-- akordeonas --}}
-  <div class="accordion mt-5" id="accordionExample">
+  <div class="accordion mt-5 shadow-sm" id="accordionExample">
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -65,7 +65,7 @@
           <div class="accordion-body">
             <ul class="list-unstyled">
               <li class="mb-2"><strong class="text-pink">What is HopeFund?</strong><br> HopeFund is an online platform where people can share their personal stories and raise funds for important causes. Whether it’s medical expenses, education, or community projects, HopeFund helps connect those in need with people willing to support them.</li>
-              <li class="mb-2"><strong class="text-pink">Who can use HopeFund?</strong><br> Anyone can browse and donate to stories. To create your own story, you need to register for a free account. Once registered, you can start sharing your story and collecting donations.</li>
+              <li class="mb-2"><strong class="text-pink">Who can use HopeFund?</strong><br> Anyone can browse, donate and create stories. To create your own story, you need to fill a form and wait until admin will aprove your story.</li>
               <li class="mb-2"><strong class="text-pink">Is HopeFund free to use?</strong><br> Yes, creating a story on HopeFund is completely free. All funds raised go directly to the campaign creator, minus standard payment processing fees charged by third-party providers (e.g., PayPal or Stripe).</li>
             </ul>
           </div>
@@ -80,7 +80,7 @@
         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
           <div class="accordion-body">
             <ul class="list-unstyled">
-              <li class="mb-2"><strong class="text-pink">How do I create a story?</strong><br> After logging into your account, simply click on <u>“Create Story”</u> in the navigation bar. Fill in the required information such as the title, description, fundraising goal, and upload an image to make your story more engaging.</li>
+              <li class="mb-2"><strong class="text-pink">How do I create a story?</strong><br> Simply click on <u>“Create Story”</u> in the navigation bar. Fill in the required information such as the title, description, fundraising goal, and upload an image to make your story more engaging.</li>
               <li class="mb-2"><strong class="text-pink">What details should I include in my story?</strong><br> A clear and detailed description will help people understand your cause. Include:
                 <ul>
                   <li>A meaningful title</li>
