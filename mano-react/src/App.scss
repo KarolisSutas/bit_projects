@@ -116,3 +116,12 @@
 
 }
 
+.fancy-box {
+  min-width: 150px;
+  min-height: 150px;
+  background: linear-gradient(135deg, rgb(66, 167, 12), rgb(50, 8, 219));
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 50px;
+}
+
