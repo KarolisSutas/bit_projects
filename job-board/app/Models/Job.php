@@ -11,7 +11,11 @@ class Job extends Model
 
     protected $table = 'job_posts';
      
-    public static array $experience = ['entry', 'intermediate', 'senior'];
+    public static array $experience = [
+        'entry', 
+        'intermediate', 
+        'senior'
+    ];
     public static array $category = [
         'IT',
         'Finance',
