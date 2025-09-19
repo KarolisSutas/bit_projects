@@ -11,7 +11,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="mx-auto mt-10 max-w-2xl bg-green-50 text-lime-950">
     {{ $slot }}
 </body>
 </html>

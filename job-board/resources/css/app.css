@@ -1,7 +1,4 @@
 @import 'tailwindcss';
-@theme {
-    /* pvz.: --color-brand: #0ea5e9; */
-  }
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
