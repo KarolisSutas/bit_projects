@@ -34,6 +34,12 @@ class Story extends Model
         'travel'
     ];
 
+    public static array $status = [
+        'Not Approved',
+        'Approved'
+        
+ ];
+
     public function donations()
     {
         return $this->hasMany(\App\Models\Donation::class);
