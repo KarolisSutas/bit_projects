@@ -19,5 +19,8 @@
         "tailwindcss": "^4.1.13",
         "vite": "^7",
         "vue": "^3.2.37"
+    },
+    "dependencies": {
+        "alpinejs": "^3.15.0"
     }
 }
