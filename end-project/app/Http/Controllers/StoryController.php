@@ -25,9 +25,12 @@ class StoryController extends Controller
             $query->where('required_amount', '<=', request('max_amount'));
         })->when(request('category'), function ($query) {
             $query->where('category', request('category'));
-        });
+        })->when(request('status'), function ($query) {
+                $isApproved = request('status') === 'Approved' ? 1 : 0;
+                $query->where('is_approved', $isApproved);
+        })->latest();
 
-        return view('story.index', ['stories' => $stories->get()]);
+        return view('story.index', ['stories' => $stories->paginate(10)->withQueryString()]);
     }
 
     /**

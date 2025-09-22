@@ -3,7 +3,7 @@
         <h2 class="text-lg font-medium">{{ $story->full_name }}
             <p class="text-sm">
                 @if ($story->approved)
-                    <span class="font-medium text-green-400">Approved</span>
+                    <span class="font-medium text-green-300">Approved</span>
                 @else
                     <span class="font-medium text-red-500">Not Approved</span>
                 @endif

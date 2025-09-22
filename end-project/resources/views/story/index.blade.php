@@ -46,4 +46,8 @@
          </div>
     </x-job-card>
     @endforeach
+
+    <div class="mt-4">
+        {{ $stories->links() }}
+    </div>
 </x-layout>
