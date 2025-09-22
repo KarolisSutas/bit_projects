@@ -25,6 +25,7 @@ class Story extends Model
         'required_amount'  => 'decimal:2',
         'collected_amount' => 'decimal:2',
         'is_completed'     => 'boolean',
+        'is_approved'     => 'boolean',
     ];
 
     public static array $category = [
@@ -43,6 +44,17 @@ class Story extends Model
     public function donations()
     {
         return $this->hasMany(\App\Models\Donation::class);
+    }
+
+    public function toggleApprove(): void
+    {
+        $this->is_approved = !$this->is_approved;
+        $this->save();
+    }
+
+    public function getApprovedAttribute(): bool
+    {
+        return (bool) $this->is_approved;
     }
 
 
