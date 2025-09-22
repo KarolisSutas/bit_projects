@@ -16,7 +16,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/main', [MainController::class, 'index'])->name('main');
 
 Route::get('', fn() => to_route('main'));
-Route::resource('stories', StoryController::class)->only(['index', 'show']);
+Route::resource('stories', StoryController::class)->only(['index', 'show', 'create']);
 
 Route::put('stories/{story}/toggle-approve', function (Story $story) {
     $story->toggleApprove();

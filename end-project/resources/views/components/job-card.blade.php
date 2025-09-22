@@ -3,7 +3,7 @@
         <h2 class="text-lg font-medium">{{ $story->full_name }}
             <p class="text-sm">
                 @if ($story->approved)
-                    <span class="font-medium text-green-300">Approved</span>
+                    <span class="font-medium text-sky-500">Approved</span>
                 @else
                     <span class="font-medium text-red-500">Not Approved</span>
                 @endif
@@ -13,9 +13,9 @@
         
     </div>
 
-    <div class="mb-4 flex items-center justify-between text-sm text-lime-700 ">
+    <div class="mb-4 flex items-center justify-between text-sm text-slate-500 ">
         <div class="flex space-x-4">
-            <div class="text-lime-700/65">Fundraising cause: </div>
+            <div class="text-lime-700">Fundraising cause: </div>
             <div >{{ $story->story_title }}</div>
         </div>
         
