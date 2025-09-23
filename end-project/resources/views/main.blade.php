@@ -47,7 +47,7 @@
             <p class="text-muted">Donations Made</p>
           <hr>
             <h3 class="fw-bold mt-2">320</h3>
-            <p class="text-muted">Active Users</p>
+            <p class="text-muted">Fullfillled stories</p>
         </div>
       </div>
     </div>
