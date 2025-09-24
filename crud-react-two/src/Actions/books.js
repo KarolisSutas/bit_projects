@@ -6,8 +6,9 @@ export const getBooks = books => {
         type: C.GET_BOOKS_FROM_SERVER,
         payload: books
     }
-}
 
+//DELETE BOOK
+}
 export const markToDelete = id => {
 
     return {
@@ -15,7 +16,6 @@ export const markToDelete = id => {
         payload: id
     }
 }
-
 export const Delete = id => {
 
     return {
@@ -23,11 +23,50 @@ export const Delete = id => {
         payload: id
     }
 }
-
 export const RestoreDeleted = id => {
 
     return {
         type: C.RESTORE_MARKED_BOOK,
         payload: id
+    }
+}
+// ADD NEW BOOK ACTIONS
+
+export const addNewBook = (book, id) => {
+    return {
+        type: C.ADD_NEW_BOOK,
+        payload: {...book, id}
+    }
+}
+export const  confirmAddingNewBook= (tmpId, id) => {
+    return {
+        type: C.CONFIRM_ADDING_NEW_BOOK,
+        payload: { tmpId, id}
+    }
+}
+export const cancelAddingNewBook = id => {
+    return {
+        type: C.CANCEL_ADDING_NEW_BOOK,
+        payload: id
+    }
+}
+// UPDATE BOOK
+
+export const updateBook = book => {
+    return {
+        type: C.UPDATE_BOOK,
+        payload: book
+    }
+}
+export const cancelUpdatingBook = id => {
+    return {
+        type: C.CANCEL_UPDATING_BOOK,
+        payload: id
+    }
+}
+ 
+export const confirmUpdatingBook = _ => {
+    return {
+        type: C.CONFIRM_UPDATING_BOOK,
     }
 }

@@ -13,11 +13,29 @@ export default function booksReducer(state, action) {
             stateCopy = state.map(b => action.payload === b.id ? { ...b, delete: true } : b);
             break;
         case C.REOMVE_DELETED_BOOK:
+        case C.CANCEL_ADDING_NEW_BOOK:
             stateCopy = state.filter(b =>  b.id !== action.payload.id);
             break;
         case C.RESTORE_MARKED_BOOK:
             stateCopy = state.map(b => action.payload === b.id ? { ...b, delete: false } : b);
             break;
+
+        case C.ADD_NEW_BOOK:
+            //ALTERNATYVA
+            // stateCopy = [action.payload, ...state];
+            stateCopy.unshift(action.payload);
+            break;
+        case C.CONFIRM_ADDING_NEW_BOOK:
+            // stateCopy = state.map(b => action.payload.tmpId === b.id ? { ...b, id: action.payload.id } : b);
+            //ALTERNATYVA
+            const book =  stateCopy.find(b => b.id === action.payload.tmpId);
+            book.id = action.payload.id;
+            break;
+            
+        case C.UPDATE_BOOK:
+            stateCopy = state.map(b => b.id === action.payload.id ? { ...b, ...action.payload.id, copy: { ...b } } : b);
+            break;
+            
 
         default: 
     }
