@@ -35,7 +35,7 @@ export default function useCreateBook(dispatchBooks, msg) {
                 msg({
                     title: 'Storing Failed', 
                     text: 'Your book was rejected.', 
-                    type: 'warning'
+                    type: 'danger'
                 }, msgId);
             });
     

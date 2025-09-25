@@ -38,7 +38,7 @@ export default function useDeleteBook(dispatchBooks, msg) {
                 msg({
                     title: 'Deleting Failed', 
                     text: 'Your book was not deleted.', 
-                    type: 'warning'
+                    type: 'danger'
                 }, msgId);
             });
     

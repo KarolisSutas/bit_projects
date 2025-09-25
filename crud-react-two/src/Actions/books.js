@@ -70,3 +70,10 @@ export const confirmUpdatingBook = _ => {
         type: C.CONFIRM_UPDATING_BOOK,
     }
 }
+
+export const sortBooks = sort => {
+    return {
+        type: C.SORT_BOOKS,
+        payload: parseInt(sort)
+    }
+}
