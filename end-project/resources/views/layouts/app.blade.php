@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-teal bg-gradient text-white bg-opacity-75 shadow-sm">
             <div class="container">
                 <a class="navbar-brand text-indigo" href="{{ route('main') }}">
-                    <img class="logo" src="{{ asset('images/LimeTogether.png') }}" alt="Logo">
+                    <img class="logo" src="{{ asset('images/lime_logo.png') }}" alt="Logo">
                     LimeTogether
                 </a>
                 {{-- hamburger --}}
