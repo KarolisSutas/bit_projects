@@ -33,9 +33,11 @@ class StoryController extends Controller
         return view('story.index', ['stories' => $stories->paginate(10)->withQueryString()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store']);
+    }
+    
     public function create()
     {
         return view('story.create');

@@ -29,3 +29,9 @@ Route::resource('auth', AuthController::class)
 Route::delete('logout', fn() => to_route('auth.destroy'))->name('logout');
 Route::delete('auth', [AuthController::class, 'destroy'])
     ->name('auth.destroy');
+
+Route::middleware('auth')->group(function () {
+        Route::get('/story/create', [StoryController::class, 'create'])->name('stories.create');
+        Route::post('/stories', [StoryController::class, 'store'])->name('stories.store');
+});
+    

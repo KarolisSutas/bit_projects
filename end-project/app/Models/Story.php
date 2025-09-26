@@ -57,7 +57,11 @@ class Story extends Model
         return (bool) $this->is_approved;
     }
 
-
+    
+    public function scopeApproved($query)
+    {
+        return $query->where('is_approved', true);
+    }
     // $stories = Story::where('is_approved', true)->get();
 
     // // style="width: {{ $story->progress_percent }}%;"
