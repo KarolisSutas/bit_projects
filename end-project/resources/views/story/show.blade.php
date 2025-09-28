@@ -9,7 +9,7 @@
             {!! nl2br(e($story->description)) !!}
         </p>
 
-        <p class="mb-4 text-sm text-indigo-500">Created {{ $story->created_at->diffForHumans() }} • modified {{ $story->updated_at->diffForHumans() }}</p>
+        <p class="mb-4 text-sm text-indigo-500">Created {{ $story->created_at->diffForHumans() }} • Modified {{ $story->updated_at->diffForHumans() }}</p>
         
         <form method="POST" action="{{ route('stories.toggle-approve', $story) }}" class="inline">
             @csrf

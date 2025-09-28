@@ -57,6 +57,14 @@ class Story extends Model
         return (bool) $this->is_approved;
     }
 
+    public function toggleComplete(): void
+    {
+    if ($this->collected_amount >= $this->required_amount) {
+        $this->is_completed = true;
+        $this->save();
+    }
+    }
+
     
     public function scopeApproved($query)
     {

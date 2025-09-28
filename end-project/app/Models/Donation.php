@@ -40,4 +40,10 @@ class Donation extends Model
 
     }
 
+    //completed
+    // $story->collected_amount += $donation->donated_amount;
+    // $story->save();
+
+    // $story->toggleComplete();
+
 }
