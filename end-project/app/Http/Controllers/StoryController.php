@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Story;
+use App\Http\Requests\StoreStoryRequest;
 
 class StoryController extends Controller
 {
@@ -47,9 +48,22 @@ class StoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreStoryRequest $request)
     {
-        //
+          // 1. validacija
+          $data = $request->validated();
+
+          // 2. įkeliam paveikslėlį, jei yra
+          if ($request->hasFile('image')) {
+              $data['image'] = $request->file('image')->store('stories', 'public');
+          }
+  
+          // 3. sukuriam įrašą DB
+          Story::create($data);
+  
+          // 4. redirect su pranešimu
+          return redirect()->route('main')->with('success', 'Story created!');
+
     }
 
     /**

@@ -18,7 +18,8 @@ class Story extends Model
         'collected_amount', 
         'category',
         'is_completed',
-        'is_approved', 
+        'is_approved',
+        'image' 
         ];
 
     protected $casts = [
