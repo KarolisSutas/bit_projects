@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use \App\Models\Story;
+use \App\Models\Donation;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,8 +21,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'karolis@gmail.com',
         ]);
 
-        \App\Models\Story::factory(30)->create();
-        \App\Models\Donation::factory(100)->create();
+        
+        Story::factory(30)->create()->each(function ($story) {
+            Donation::factory(5)->create([
+                'story_id' => $story->id,
+            ]);
+        });
 
     }
 }

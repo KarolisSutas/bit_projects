@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Donation extends Model
 {
@@ -26,18 +28,7 @@ class Donation extends Model
         return $this->belongsTo(Story::class);
     }
 
-    public function getDisplayDonorNameAttribute(): string
-    {
-        if ($this->is_anonymous) {
-            return 'Anonymous Donor';
-        }
-
-        return $this->donor_full_name ?: 'Unknown Donor';
-        // Blade faile:
-        // <p><strong>Donor:</strong> {{ $donation->display_donor_name }}</p>
-        // <p><strong>Amount:</strong> €{{ $donation->donated_amount }}</p>
-
-    }
+ 
 
     //completed
     // $story->collected_amount += $donation->donated_amount;

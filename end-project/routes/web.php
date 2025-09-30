@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StoryController;
+use App\Http\Controllers\DonationController;
 use App\Models\Story;
 
 
@@ -11,7 +12,9 @@ use App\Models\Story;
 Auth::routes();
 
 Route::get('/main', [MainController::class, 'index'])->name('main.index');
-Route::get('/show/{story}', [MainController::class, 'show'])->name('main.show');
+Route::get('/main/{story}', [MainController::class, 'show'])->name('main.show');
+Route::post('/main/{story}/donations', [DonationController::class, 'store'])->name('donations.store');
+
 
 Route::get('', fn() => to_route('main'));
 Route::resource('stories', StoryController::class)->only(['index', 'show', 'create']);

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Story extends Model
 {
@@ -71,9 +73,7 @@ class Story extends Model
     {
         return $query->where('is_approved', true);
     }
-    // $stories = Story::where('is_approved', true)->get();
-
-    // // style="width: {{ $story->progress_percent }}%;"
+    
     public function getProgressPercentAttribute(): int
     {
         if ($this->required_amount == 0) {
