@@ -23,9 +23,9 @@ export function basicValidator(name, target, type, typeParam = null) {
             return null;
 
         case 'year':
-            if (!/^\d{4}$/.test(target.value) || target.value < 1500 || target.value > (new Date()).getFullYear()) {
+            if (!/^\d{4}$/.test(target.value) || target.value < 1501 || target.value > (new Date()).getFullYear()) {
                 target.classList.add('is-invalid');
-                return `${name} must be a valid year between 1500 and ${(new Date()).getFullYear()}.`;
+                return `${name} must be a valid year between 1501 and ${(new Date()).getFullYear()}.`;
             }
             return null;
 
