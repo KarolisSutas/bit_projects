@@ -3,10 +3,12 @@
     :links="[$story->full_name => null]"
      />
     <x-story-card :$story>
-      
-        <img class="h-75 w-150 mx-auto mb-4"
-        src="{{ asset('storage/' . ltrim($story->image_path, '/')) }}"
-        alt="{{ $story->story_title }}">
+ 
+        @php
+        $path = ltrim($story->image, '/'); // pvz. "stories/85PuyaN....jpg"
+        @endphp
+
+        <img src="{{ asset('storage/' . $path) }}" alt="{{ $story->story_title }}">
 
         <p class="mb-4 text-sm text-slate-500 ">
             {!! nl2br(e($story->description)) !!}

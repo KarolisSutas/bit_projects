@@ -3,16 +3,18 @@
     :links="['Stories' => route('stories.index'), $story->full_name => '#']" />
     <x-job-card :$story>
         
-        <pre>
+        {{-- <pre>
             image_path: {{ var_export($story->image, true) }}
             storage_url: {{ Storage::url(ltrim($story->image, '/')) }}
             asset_url:   {{ asset('storage/' . ltrim($story->image, '/')) }}
             exists?:     {{ Storage::disk('public')->exists(ltrim($story->image, '/')) ? 'YES' : 'NO' }}
-        </pre>
-        <img class="mx-auto mb-4"
-        src="{{ $story->image ? Storage::url(ltrim($story->image, '/')) : asset('images/placeholder.jpg') }}"
-        alt="{{ $story->story_title }}">
-   
+        </pre> --}}
+        @php
+        $path = ltrim($story->image, '/'); // pvz. "stories/85PuyaN....jpg"
+        @endphp
+      
+      <img src="{{ asset('storage/' . $path) }}" alt="{{ $story->story_title }}">
+         
         <p class="mb-4 text-sm text-slate-500 ">
             {!! nl2br(e($story->description)) !!}
         </p>
@@ -27,4 +29,5 @@
             </x-button>
         </form>
     </x-job-card>
+    
 </x-layout>
