@@ -96,7 +96,7 @@
             
                 <div class="mt-2 space-x-4">
                     <x-button type="submit">Save</x-button>
-                    <x-button type="button" onclick="window.location='{{ route('stories.index') }}'">Cancel</x-button>
+                    <x-button type="button" onclick="window.location='{{ route('main.index') }}'">Cancel</x-button>
                 </div>
             </form>
                     </div>

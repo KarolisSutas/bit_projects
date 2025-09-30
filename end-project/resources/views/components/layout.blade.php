@@ -36,7 +36,7 @@
 
   <nav class="mb-6 px-4 py-2.5 bg-transparent relative z-10">
     <div class="flex flex-wrap items-center justify-between mx-auto">
-      <a href="{{ route('main') }}" class="flex items-center space-x-2">
+      <a href="{{ route('main.index') }}" class="flex items-center space-x-2">
         <img src="{{ asset('images/lime_logo.png') }}" class="h-20 w-20 rounded-full border-2 border-lime-600 object-cover" alt="Logo">
         <span class="self-center text-xl font-semibold whitespace-nowrap text-lime-950">
           LimeTogether

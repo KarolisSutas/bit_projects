@@ -21,7 +21,6 @@ class Donation extends Model
         'donated_amount' => 'decimal:2',
     ];
 
-    // Kiekviena auka priklauso vienai istorijai
     public function story()
     {
         return $this->belongsTo(Story::class);

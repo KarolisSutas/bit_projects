@@ -14,7 +14,7 @@
         <div class="flex space-x-1 text-xs">
 
             <x-tag>
-                <a href="{{ route('main', ['category' => $story->category]) }}">
+                <a href="{{ route('main.index', ['category' => $story->category]) }}">
                     {{ $story->category }}
                 </a>
             </x-tag>

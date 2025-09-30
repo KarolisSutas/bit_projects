@@ -27,7 +27,7 @@ class StoreStoryRequest extends FormRequest
             'required_amount' => 'required|integer|min:1',
             'description' => 'required|string',
             'category' => 'required|string|in:health,education,travel,hobbies',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png, webp|max:2048',
         ];
     }
 }

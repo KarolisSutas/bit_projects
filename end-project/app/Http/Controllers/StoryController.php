@@ -31,7 +31,7 @@ class StoryController extends Controller
                 $query->where('is_approved', $isApproved);
         })->latest();
 
-        return view('story.index', ['stories' => $stories->paginate(10)->withQueryString()]);
+        return view('stories.index', ['stories' => $stories->paginate(10)->withQueryString()]);
     }
 
     public function __construct()
@@ -41,7 +41,7 @@ class StoryController extends Controller
     
     public function create()
     {
-        return view('story.create');
+        return view('stories.create');
 
     }
 
@@ -62,7 +62,7 @@ class StoryController extends Controller
           Story::create($data);
   
           // 4. redirect su pranešimu
-          return redirect()->route('main')->with('success', 'Story created!');
+          return redirect()->route('main.index')->with('success', 'Story created!');
 
     }
 
@@ -71,7 +71,7 @@ class StoryController extends Controller
      */
     public function show(Story $story)
     {
-        return view('story.show', compact('story'));
+        return view('stories.show', compact('story'));
     }
 
     /**
