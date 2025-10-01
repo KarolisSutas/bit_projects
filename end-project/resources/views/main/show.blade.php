@@ -9,17 +9,20 @@
     <x-story-card :$story>
  
         @php
-        $path = ltrim($story->image, '/'); // pvz. "stories/85PuyaN....jpg"
+        $path = ltrim($story->image, '/');
         @endphp
+        <div class="flex justify-center mb-2">
+            <img class="mb-2 rounded-2xl" 
+            src="{{ asset('storage/' . $path) }}" 
+            alt="{{ $story->story_title }}">
+        </div>
 
-        <img src="{{ asset('storage/' . $path) }}" alt="{{ $story->story_title }}">
-
-        <p class="mb-4 text-sm text-slate-500 ">
+        <p class="mb-4 text-sm text-slate-600 text-justify">
             {!! nl2br(e($story->description)) !!}
         </p>
 
         <p class="mb-4 text-sm text-indigo-500">Created {{ $story->created_at->diffForHumans() }} • Modified {{ $story->updated_at->diffForHumans() }}</p>
-       
+        <span class="text-lime-700 text-md space-x-3">Funds raised: <span class="text-fuchsia-500">€{{ number_format($story->collected_amount) }}</span>   Missing: <span class="text-fuchsia-500">€{{ number_format($story->required_amount - $story->collected_amount) }}</span></span>
     </x-story-card>
     <div class="flex justify-between space-x-1">
         <x-card class="w-sm">

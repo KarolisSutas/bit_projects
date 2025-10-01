@@ -11,8 +11,8 @@
 
     <div class="mb-4 flex items-center justify-between text-sm text-slate-500">
         <div class="flex space-x-4">
-            <div class="text-lime-700">Fundraising cause:</div>
-            <div>{{ $story->story_title }}</div>
+            <div class="text-lime-700 text-base">Fundraising cause:</div>
+            <div class="text-base">{{ $story->story_title }}</div>
         </div>
 
         {{-- Paliekam kategorijos nuorodą aktyvią net kai completed (jei nori – užrakink ir ją) --}}

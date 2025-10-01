@@ -14,8 +14,18 @@ class MainController extends Controller
         ->orderBy('is_completed', 'asc')
         ->orderBy('updated_at', 'desc')
         ->get();
+
+        
+        $data = [
+            'total_stories' => Story::count(),
+            'stories_completed' => Story::where('is_completed', 1)->count(),
+            'total_donations' => Donation::sum('donated_amount')
+            ];
     
-        return view('main.index', compact('stories'));
+            return view('main.index', [
+                'stories' => $stories,
+                'data'    => $data,
+            ]);
     }
 
     public function show($id)

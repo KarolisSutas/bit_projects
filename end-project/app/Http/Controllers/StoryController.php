@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Story;
+use App\Models\Donation;
 use App\Http\Requests\StoreStoryRequest;
 
 class StoryController extends Controller
@@ -58,6 +59,7 @@ class StoryController extends Controller
      */
     public function store(StoreStoryRequest $request)
     {
+
           // 1. validacija
           $data = $request->validated();
 

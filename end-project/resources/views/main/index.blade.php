@@ -8,15 +8,15 @@
     <x-card class="mb-4">
             <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-fuchsia-500 sm:grid-cols-3 xl:grid-cols-3 sm:p-8 justify-between">
                 <div class="flex flex-col items-center">
-                    <dt class="mb-2 text-3xl font-extrabold ">73M+</dt>
+                    <dt class="mb-2 text-3xl font-extrabold ">{{ $data['total_stories'] }}</dt>
                     <dd class="text-stone-400 ">Stories</dd>
                 </div>
                 <div class="flex flex-col items-center">
-                    <dt class="mb-2 text-3xl font-extrabold">100M+</dt>
-                    <dd class="text-stone-400 ">Stories fullfilled</dd>
+                    <dt class="mb-2 text-3xl font-extrabold">{{ $data['stories_completed'] }}</dt>
+                    <dd class="text-stone-400 ">Stories completed</dd>
                 </div>
                 <div class="flex flex-col items-center">
-                    <dt class="mb-2 text-3xl font-extrabold">1B</dt>
+                    <dt class="mb-2 text-3xl font-extrabold">€{{ number_format($data['total_donations']) }}</dt>
                     <dd class="text-stone-400 ">Donations</dd>
                 </div>
             </dl>

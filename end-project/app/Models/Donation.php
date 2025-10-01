@@ -28,12 +28,4 @@ class Donation extends Model
         return $this->belongsTo(Story::class);
     }
 
- 
-
-    //completed
-    // $story->collected_amount += $donation->donated_amount;
-    // $story->save();
-
-    // $story->toggleComplete();
-
 }

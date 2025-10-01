@@ -74,12 +74,5 @@ class Story extends Model
         return $query->where('is_approved', true);
     }
     
-    public function getProgressPercentAttribute(): int
-    {
-        if ($this->required_amount == 0) {
-        return 0;
-        }
-        return (int) floor(($this->collected_amount / $this->required_amount) * 100);
-    }
 
 }
