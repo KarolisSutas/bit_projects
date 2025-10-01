@@ -40,8 +40,8 @@ class Story extends Model
 
     public static array $status = [
         'Not Approved',
-        'Approved'
-        
+        'Approved',
+        'Completed'
  ];
 
     public function donations()

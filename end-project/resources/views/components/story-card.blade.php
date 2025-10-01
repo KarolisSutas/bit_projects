@@ -31,17 +31,11 @@
     </div>
 
     @if ($completed)
-    {{-- Paveiksliukas dengia visą kortelę --}}
     <img
         src="{{ asset('images/completed.png') }}"
         alt="Completed"
         class="absolute inset-0 w-full h-full object-cover rounded-md pointer-events-none opacity-70"
     />
-    {{-- <div class="absolute inset-0 flex items-center justify-center rounded-xl bg-white/80 pointer-events-none">
-        <span class="text-4xl md:text-5xl font-extrabold text-lime-700 rotate-[-10deg] opacity-90">
-            COMPLETED
-        </span>
-    </div> --}}
 @endif
     </x-card>
     {{-- Papildomas juostelės „ribbon“ variantas (nebūtina):

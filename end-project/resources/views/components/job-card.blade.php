@@ -1,4 +1,13 @@
-<x-card class="mb-4">
+@php
+    $completed = (bool) $story->is_completed;
+@endphp
+
+<x-card class="mb-4 relative">
+    @if ($completed)
+    <div class="absolute top-4 right-[0px] rotate-10 bg-lime-600 text-white text-xs font-semibold px-12 py-1 shadow">
+        COMPLETED
+    </div>
+    @endif
     <div class="mb-4 flex justify-between ">
         <h2 class="text-lg font-medium">{{ $story->full_name }}
             <p class="text-sm">
@@ -28,7 +37,5 @@
             </x-tag>
         </div>
     </div>
-    
-    
     {{ $slot }}
 </x-card>

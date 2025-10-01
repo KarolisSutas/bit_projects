@@ -10,8 +10,11 @@ class MainController extends Controller
 {
     public function index()
     {
-        $stories = Story::approved()->latest('updated_at')->get();
-
+        $stories = Story::approved()
+        ->orderBy('is_completed', 'asc')
+        ->orderBy('updated_at', 'desc')
+        ->get();
+    
         return view('main.index', compact('stories'));
     }
 

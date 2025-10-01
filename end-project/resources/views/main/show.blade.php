@@ -1,3 +1,7 @@
+@php
+    $completed = (bool) $story->is_completed;
+@endphp
+
 <x-layout>
     <x-breadcrumbs class="flex px-5 py-3"
     :links="[$story->full_name => null]"
@@ -21,7 +25,9 @@
         <x-card class="w-sm">
             <h2 class="mb-2 text-xl font-bold text-lime-600">Donate</h2>
             <div class="w-sm">
-                <form action="{{ route('donations.store', $story) }}" method="POST" enctype="multipart/form-data">
+                <form class="{{ $completed ? 'pointer-events-none select-none' : '' }}" 
+                action="{{ route('donations.store', $story) }}" 
+                method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-2 max-w-xs">
                     <label for="donor_full_name" class="block mb-2 text-sm font-medium text-lime-950">Full Name</label>

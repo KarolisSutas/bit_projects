@@ -26,10 +26,18 @@ class StoryController extends Controller
             $query->where('required_amount', '<=', request('max_amount'));
         })->when(request('category'), function ($query) {
             $query->where('category', request('category'));
-        })->when(request('status'), function ($query) {
-                $isApproved = request('status') === 'Approved' ? 1 : 0;
-                $query->where('is_approved', $isApproved);
-        })->latest();
+        });
+
+        if ($request->status === 'Approved') {
+            $stories->where('is_approved', 1);
+        } elseif ($request->status === 'Not Approved') {
+            $stories->where('is_approved', 0);
+        } elseif ($request->status === 'Completed') {
+            $stories->where('is_completed', 1);
+        };
+    
+        // Bendras rūšiavimas tarp likusių
+        $stories->latest('created_at');
 
         return view('stories.index', ['stories' => $stories->paginate(10)->withQueryString()]);
     }

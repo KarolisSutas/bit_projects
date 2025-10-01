@@ -27,6 +27,7 @@
             $percent = 0;
             if ($story->required_amount > 0) {
                 $percent = ($story->collected_amount / $story->required_amount) * 100;
+                $percent = min(100, $percent);
             }
             @endphp
         
