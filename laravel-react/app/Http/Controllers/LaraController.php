@@ -18,4 +18,14 @@ class LaraController extends Controller
             'laraColors' => $laraColors
         ]);
     }
+
+    public function draugas()
+    {
+        $kasTu = 'Briedis is awesome';
+
+        return inertia('Briedis', [
+            'kasTu' => $kasTu,
+            'laraUrl' => route('lara')
+        ]);
+    }
 }
