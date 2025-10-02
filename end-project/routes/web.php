@@ -6,6 +6,9 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\DonationController;
 use App\Models\Story;
+// use Spatie\Permission\Models\Role;
+// use Spatie\Permission\Models\Permission;
+// use Spatie\Permission\Traits\HasRoles;
 
 
 
@@ -38,7 +41,10 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::middleware('auth')->group(function () {
         Route::get('/story/create', [StoryController::class, 'create'])->name('stories.create');
-        Route::post('/stories', [StoryController::class, 'store'])->name('stories.store');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('stories', StoryController::class);
 });
 
 

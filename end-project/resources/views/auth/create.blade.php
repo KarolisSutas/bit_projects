@@ -4,7 +4,7 @@
   </h1>
 
   <x-card class="py-8 px-16">
-    {{-- Bendras auth klaidos pranešimas (iš kontrolerio -> with('error', ...)) --}}
+
     @if (session('error'))
       <div class="mb-6 rounded-md bg-red-50 p-4 text-sm text-red-700">
         {{ session('error') }}
@@ -14,7 +14,6 @@
     <form action="{{ route('auth.store') }}" method="POST" novalidate>
       @csrf
 
-      {{-- E-mail --}}
       <div class="mb-6">
         <label for="email" class="mb-2 block text-sm font-medium text-slate-900">
           E-mail
@@ -31,7 +30,6 @@
         @enderror
       </div>
 
-      {{-- Password --}}
       <div class="mb-6">
         <label for="password" class="mb-2 block text-sm font-medium text-slate-900">
           Password

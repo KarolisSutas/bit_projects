@@ -47,7 +47,7 @@ class AuthController extends Controller
 
     public function signup()
     {
-        return view('auth.signup'); // signup.blade
+        return view('auth.signup'); 
     }
 
     public function register(Request $request)
@@ -64,7 +64,7 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        Auth::login($user); // auto-login po registracijos
+        Auth::login($user);
         $request->session()->regenerate();
 
         return redirect('/main');

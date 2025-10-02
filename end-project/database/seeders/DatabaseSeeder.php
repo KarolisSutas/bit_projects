@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use \App\Models\Story;
 use \App\Models\Donation;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // Sukuriam rolę
+        $role = Role::firstOrCreate(['name' => 'admin']);
+
+        // Sukuriam vartotoją
+        $user = User::firstOrCreate([
+            'email' => 'admin@gmail.com',
+        ], [
+            'name' => 'Adminas',
+            'password' => bcrypt('12345678'),
+        ]);
+
+        // Priskiriam rolę
+        $user->assignRole($role);
 
         \App\Models\User::factory()->create([
             'name' => 'Karolis Sutas',

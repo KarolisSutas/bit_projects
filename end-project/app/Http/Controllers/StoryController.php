@@ -45,7 +45,7 @@ class StoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only(['create', 'store']);
+        $this->middleware('auth')->only(['create', 'store', 'stories']);
     }
     
     public function create()
@@ -54,9 +54,7 @@ class StoryController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(StoreStoryRequest $request)
     {
         // 1. validacija
