@@ -11,12 +11,15 @@
         @php
         $path = ltrim($story->image, '/');
         @endphp
-        <div class="flex justify-center mb-2">
-            <img class="mb-2 rounded-2xl" 
-            src="{{ asset('storage/' . $path) }}" 
-            alt="{{ $story->story_title }}">
+        @if ($story->cover_image)
+        <div class="flex justify-center mb-2 max-h-130">
+            <img 
+                class="mb-2 rounded-md shadow-lg max-h-130 object-cover" 
+                src="{{ asset('storage/' . ltrim($story->cover_image, '/')) }}" 
+                alt="{{ $story->story_title }}"
+            >
         </div>
-
+        @endif
         <p class="mb-4 text-sm text-slate-600 text-justify">
             {!! nl2br(e($story->description)) !!}
         </p>
@@ -30,7 +33,8 @@
             <div class="w-sm">
                 <form class="{{ $completed ? 'pointer-events-none select-none' : '' }}" 
                 action="{{ route('donations.store', $story) }}" 
-                method="POST" enctype="multipart/form-data">
+                method="POST" enctype="multipart/form-data"
+                id="donate">
                 @csrf
                 <div class="mb-2 max-w-xs">
                     <label for="donor_full_name" class="block mb-2 text-sm font-medium text-lime-950">Full Name</label>
@@ -42,7 +46,7 @@
                     />
                     
                     <label class="mb-1 flex items-center">
-                        <input type="checkbox" name="is_anonymous" value="1"
+                        <input class="rounded-xl" type="checkbox" name="is_anonymous" value="1"
                         {{ old('is_anonymous') ? 'checked' : '' }}
                           />
                         <span class="m-2 text-xs">Donate anonymous</span>

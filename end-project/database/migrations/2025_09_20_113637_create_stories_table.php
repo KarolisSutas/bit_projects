@@ -22,7 +22,8 @@ return new class extends Migration
             $table->enum('category', ['health', 'education', 'hobbies', 'travel']); // kategorija (health, education, hobbies, travel)
             $table->boolean('is_completed')->default(false);
             $table->boolean('is_approved')->default(false);
-            $table->string('image')->nullable();
+            $table->string('cover_image')->nullable();
+            $table->string('avatar_image')->nullable();
             $table->timestamps();
         });
     }

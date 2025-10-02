@@ -25,12 +25,16 @@ Route::put('stories/{story}/toggle-approve', function (Story $story) {
     return back()->with('success', 'Story status updated!');
 })->name('stories.toggle-approve');
 
-Route::get('login', fn() => to_route('auth.create'))->name('login');
-Route::resource('auth', AuthController::class)
-->only(['create', 'store']);
-Route::delete('logout', fn() => to_route('auth.destroy'))->name('logout');
-Route::delete('auth', [AuthController::class, 'destroy'])
-    ->name('auth.destroy');
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'create')->name('login');          
+    Route::post('/login', 'store')->name('auth.store');     
+
+    Route::delete('/logout', [AuthController::class, 'destroy'])->name('logout');
+
+    Route::get('/register', 'signup')->name('register');          
+    Route::post('/register', 'register')->name('register.store'); 
+});
+
 
 Route::middleware('auth')->group(function () {
         Route::get('/story/create', [StoryController::class, 'create'])->name('stories.create');

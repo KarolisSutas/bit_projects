@@ -65,13 +65,28 @@
                         </select>
                     </div>
             
-                    <div class="w-full">
-                        <label class="block mb-2 text-sm font-medium text-lime-950" for="image">Upload file</label>
+                    <div class="w-full mb-4">
+                        <label class="block mb-2 text-sm font-medium text-lime-950" for="cover_image">Story photo</label>
                         <input
-                            id="image" name="image" type="file" accept="image/*"
-                            class="block w-full text-sm text-slate-700 border border-stone-300 ring-1 ring-stone-300 rounded-lg cursor-pointer bg-white focus:outline-none file:bg-stone-200"
+                            id="cover_image" 
+                            name="cover_image" 
+                            type="file" 
+                            accept="image/*"
+                            class="block w-full text-sm text-slate-700 border border-stone-300 ring-1 ring-stone-300 rounded-lg cursor-pointer bg-white focus:outline-none file:bg-lime-400"
                         >
                     </div>
+                    
+                    <div class="w-full">
+                        <label class="block mb-2 text-sm font-medium text-lime-950" for="avatar_image">Avatar</label>
+                        <input
+                            id="avatar_image" 
+                            name="avatar_image" 
+                            type="file" 
+                            accept="image/*"
+                            class="block w-full text-sm text-slate-700 border border-stone-300 ring-1 ring-stone-300 rounded-lg cursor-pointer bg-white focus:outline-none file:bg-lime-400"
+                        >
+                    </div>
+                    
             
                     <div class="sm:col-span-2 relative">
                         <label for="description" class="block mb-2 text-sm font-medium text-lime-950">Description</label>

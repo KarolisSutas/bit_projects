@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -24,7 +26,8 @@ class AuthController extends Controller
         $remember = $request->filled('remember');
 
         if (Auth::attempt($credentials, $remember)) {
-            return redirect()->intended('/stories');
+            $request->session()->regenerate();
+            return redirect()->intended('/main');
         } else {
             return redirect()->back()
                 ->with('error', 'Invalid credentials');
@@ -32,13 +35,38 @@ class AuthController extends Controller
     }
 
    
-    public function destroy()
+    public function destroy(Request $request)
     {
         Auth::logout();
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
 
-        return redirect('/stories');
+        return redirect('/main');
+    }
+
+    public function signup()
+    {
+        return view('auth.signup'); // signup.blade
+    }
+
+    public function register(Request $request)
+    {
+        $validated = $request->validate([
+            'name'                  => 'required|string|max:255',
+            'email'                 => 'required|email|unique:users,email',
+            'password'              => 'required|confirmed|min:8',
+        ]);
+
+        $user = User::create([
+            'name'     => $validated['name'],
+            'email'    => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        Auth::login($user); // auto-login po registracijos
+        $request->session()->regenerate();
+
+        return redirect('/main');
     }
 }

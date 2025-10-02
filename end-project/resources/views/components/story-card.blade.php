@@ -3,9 +3,24 @@
 @endphp
 
 <x-card class="mb-4 relative {{ $completed ? 'opacity-60' : '' }}">
-    {{-- viršus --}}
+
     <div class="mb-4 flex justify-between">
-        <h2 class="text-lg font-medium">{{ $story->full_name }}</h2>
+        <div class="flex space-x-2 items-center">
+            <span>
+                @if ($story->avatar_image)
+                <img 
+                    src="{{ asset('storage/' . ltrim($story->avatar_image, '/')) }}" 
+                    alt="Avatar of {{ $story->full_name }}"
+                    class="h-12 w-12 rounded-full shadow-md object-cover"
+                >
+                @else
+                <div class="h-12 w-12 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 text-xs">
+                    N/A
+                </div>
+                @endif
+            </span>
+            <h2 class="text-lg font-medium ">{{ $story->full_name }}</h2>
+        </div>
         <div class="text-fuchsia-500">€{{ number_format($story->required_amount) }}</div>
     </div>
 
@@ -15,7 +30,6 @@
             <div class="text-base">{{ $story->story_title }}</div>
         </div>
 
-        {{-- Paliekam kategorijos nuorodą aktyvią net kai completed (jei nori – užrakink ir ją) --}}
         <div class="flex space-x-1 text-xs">
             <x-tag>
                 <a href="{{ route('main.index', ['category' => $story->category]) }}">
@@ -25,7 +39,6 @@
         </div>
     </div>
 
-    {{-- Slotą (dažniausiai mygtukai / nuorodos) užrakinam, kai completed --}}
     <div class="{{ $completed ? 'pointer-events-none select-none' : '' }}">
         {{ $slot }}
     </div>
@@ -36,9 +49,6 @@
         alt="Completed"
         class="absolute inset-0 w-full h-full object-cover rounded-md pointer-events-none opacity-70"
     />
-@endif
-    </x-card>
-    {{-- Papildomas juostelės „ribbon“ variantas (nebūtina):
-    <div class="absolute top-3 right-[-40px] rotate-45 bg-lime-600 text-white text-xs font-semibold px-12 py-1 shadow">
-        COMPLETED
-    </div> --}}
+    @endif
+</x-card>
+

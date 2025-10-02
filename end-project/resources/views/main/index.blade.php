@@ -38,9 +38,12 @@
             </div>
         </div>
         
-            <x-link-button :href="route('main.show', $story)">
+            <x-link-button :href="route('main.show', $story) ">
                 Show
            </x-link-button>
+           <x-link-button :href="route('main.show', $story) . '#donate'">
+                Donate
+            </x-link-button>
         </x-story-card>
         @endforeach
 </x-layout>

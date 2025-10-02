@@ -68,7 +68,7 @@
 
           @auth
             <li>
-              <form action="{{ route('auth.destroy') }}" method="POST" class="inline">
+              <form action="{{ route('logout') }}" method="POST" class="inline">
                 @csrf
                 @method('DELETE')
                 <button class="block py-2 px-3 cursor-pointer hover:bg-lime-300 md:hover:bg-transparent md:hover:text-lime-600 md:p-0 text-lime-950">
@@ -78,8 +78,13 @@
             </li>
           @else
             <li>
-              <a href="{{ route('auth.create') }}" class="block py-2 px-3 rounded hover:bg-lime-300 md:hover:bg-transparent md:hover:text-lime-600 md:p-0 text-lime-950">
+              <a href="{{ route('login') }}" class="block py-2 px-3 rounded hover:bg-lime-300 md:hover:bg-transparent md:hover:text-lime-600 md:p-0 text-lime-950">
                 Sign in
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('register') }}" class="block py-2 px-3 rounded hover:bg-lime-300 md:hover:bg-transparent md:hover:text-lime-600 md:p-0 text-lime-950">
+                Register
               </a>
             </li>
           @endauth

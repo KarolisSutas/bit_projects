@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 
 class Story extends Model
@@ -21,7 +22,8 @@ class Story extends Model
         'category',
         'is_completed',
         'is_approved',
-        'image' 
+        'cover_image',
+        'avatar_image'
         ];
 
     protected $casts = [
@@ -74,5 +76,16 @@ class Story extends Model
         return $query->where('is_approved', true);
     }
     
+    protected $appends = ['cover_url', 'avatar_url'];
+
+    public function getCoverUrlAttribute(): ?string
+    {
+        return $this->cover_image ? Storage::disk('public')->url($this->cover_image) : null;
+    }
+
+    public function getAvatarUrlAttribute(): ?string
+    {
+        return $this->avatar_image ? Storage::disk('public')->url($this->avatar_image) : null;
+    }
 
 }

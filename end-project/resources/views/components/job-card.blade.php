@@ -8,18 +8,32 @@
         COMPLETED
     </div>
     @endif
-    <div class="mb-4 flex justify-between ">
-        <h2 class="text-lg font-medium">{{ $story->full_name }}
-            <p class="text-sm">
-                @if ($story->approved)
-                    <span class="font-medium text-sky-500">Approved</span>
-                @else
-                    <span class="font-medium text-red-500">Not Approved</span>
-                @endif
-            </p>
-        </h2>
+    <div class="mb-4 flex justify-between items-center">
+        <div class="flex space-x-2 items-center">
+            @if ($story->avatar_image)
+            <img 
+                src="{{ asset('storage/' . ltrim($story->avatar_image, '/')) }}" 
+                alt="Avatar of {{ $story->full_name }}"
+                class="h-12 w-12 rounded-full shadow-md object-cover"
+            >
+            @else
+            <div class="h-12 w-12 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 text-xs">
+                N/A
+            </div>
+            @endif
+            <h2 class="text-lg font-medium">{{ $story->full_name }} 
+                <span>
+                    <p class="text-sm">
+                    @if ($story->approved)
+                        <span class="font-medium text-sky-500">Approved</span>
+                    @else
+                        <span class="font-medium text-red-500">Not Approved</span>
+                    @endif
+                    </p>
+                </span>
+            </h2>
+        </div>
         <div class="text-fuchsia-500">€{{ number_format($story->required_amount) }}</div>
-        
     </div>
 
     <div class="mb-4 flex items-center justify-between text-sm text-slate-500 ">

@@ -12,9 +12,15 @@
         @php
         $path = ltrim($story->image, '/'); // pvz. "stories/85PuyaN....jpg"
         @endphp
-        <div class="flex justify-center mb-2">
-            <img class="mb-2 rounded-2xl shadow-lg" src="{{ asset('storage/' . $path) }}" alt="{{ $story->story_title }}">
-        </div>
+        @if ($story->cover_image)
+            <div class="flex justify-center mb-2 max-h-130">
+                <img 
+                    class="mb-2 rounded-md shadow-lg max-h-130 object-cover" 
+                    src="{{ asset('storage/' . ltrim($story->cover_image, '/')) }}" 
+                    alt="{{ $story->story_title }}"
+                >
+            </div>
+        @endif
         <p class="mb-4 text-sm text-slate-500 text-justify">
             {!! nl2br(e($story->description)) !!}
         </p>
