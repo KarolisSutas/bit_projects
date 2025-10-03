@@ -37,7 +37,7 @@
             <x-link-button :href="route('stories.delete', $story)">
                 Delete
             </x-link-button>
-            <span class="text-lime-700 text-md ml-10 space-x-1">Funds raised: <span class="text-fuchsia-500">€{{ number_format($story->collected_amount) }}</span>   Required: <span class="text-fuchsia-500">€{{ number_format($story->required_amount) }}</span></span>
+            <span class="text-lime-700 text-md ml-8 space-x-1">Funds raised: <span class="text-fuchsia-500">€{{ number_format($story->collected_amount) }}</span>   Required: <span class="text-fuchsia-500">€{{ number_format($story->required_amount) }}</span></span>
         </form>
     </x-job-card>
     
