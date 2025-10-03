@@ -26,15 +26,18 @@
         </p>
 
         <p class="mb-4 text-sm text-indigo-500">Created {{ $story->created_at->diffForHumans() }} • Modified {{ $story->updated_at->diffForHumans() }}</p>
-
-        <form method="POST" action="{{ route('stories.toggle-approve', $story) }}" class="inline space-x-4">
+        
+        <form method="POST" action="{{ route('stories.toggle-approve', $story) }}" 
+        class="inline space-x-4">
             @csrf
             @method('PUT')
             <x-button type="submit" class="mt-2">
                 Mark as {{ $story->approved ? 'not approved' : 'approved' }}
             </x-button>
-            <x-button>Delete</x-button>
-            <span class="text-lime-700 text-md space-x-1">Funds raised: <span class="text-fuchsia-500">€{{ number_format($story->collected_amount) }}</span>   Required: <span class="text-fuchsia-500">€{{ number_format($story->required_amount) }}</span></span>
+            <x-link-button :href="route('stories.delete', $story)">
+                Delete
+            </x-link-button>
+            <span class="text-lime-700 text-md ml-10 space-x-1">Funds raised: <span class="text-fuchsia-500">€{{ number_format($story->collected_amount) }}</span>   Required: <span class="text-fuchsia-500">€{{ number_format($story->required_amount) }}</span></span>
         </form>
     </x-job-card>
     

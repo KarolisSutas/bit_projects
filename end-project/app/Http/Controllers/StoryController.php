@@ -16,12 +16,15 @@ class StoryController extends Controller
     {
         $stories = Story::query();
 
-        $stories->when(request('search'), function ($query) {
-            $query->where(function ($query) {
-                $query->where('full_name', 'like', '%' . request('search') . '%')
-                ->orWhere('story_title', 'like', '%' . request('search') . '%');
-            });
-        })->when(request('min_amount'), function ($query) {
+        // VARDO, KAINOS UZKLAUSA
+        // ->when(request('search'), function ($query) {
+        //     $query->where(function ($query) {
+        //         $query->where('full_name', 'like', '%' . request('search') . '%')
+        //         ->orWhere('story_title', 'like', '%' . request('search') . '%');
+        //     });
+        // })
+
+        $stories->when(request('min_amount'), function ($query) {
             $query->where('required_amount', '>=', request('min_amount'));
         })->when(request('max_amount'), function ($query) {
             $query->where('required_amount', '<=', request('max_amount'));
@@ -100,11 +103,20 @@ class StoryController extends Controller
         //
     }
 
+    public function delete(Story $story)
+    {
+        return view('stories.delete', compact('story'));
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Story $story)
     {
-        //
+        $story->delete();
+
+        return redirect()
+            ->route('stories.index')
+            ->with('status', 'Istorija sėkmingai ištrinta.');
     }
 }

@@ -3,11 +3,13 @@
 @endphp
 
 <x-card class="mb-4 relative">
+
     @if ($completed)
     <div class="absolute top-4 right-[0px] rotate-10 bg-lime-600 text-white text-xs font-semibold px-12 py-1 shadow">
         COMPLETED
     </div>
     @endif
+
     <div class="mb-4 flex justify-between items-center">
         <div class="flex space-x-2 items-center">
             @if ($story->avatar_image)
@@ -41,9 +43,7 @@
             <div class="text-lime-700">Fundraising cause: </div>
             <div >{{ $story->story_title }}</div>
         </div>
-        
         <div class="flex space-x-1 text-xs">
-
             <x-tag>
                 <a href="{{ route('stories.index', ['category' => $story->category]) }}">
                     {{ $story->category }}
@@ -51,5 +51,6 @@
             </x-tag>
         </div>
     </div>
+    
     {{ $slot }}
 </x-card>

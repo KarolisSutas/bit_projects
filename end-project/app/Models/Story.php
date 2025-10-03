@@ -70,6 +70,24 @@ class Story extends Model
     }
     }
 
+    // Hook'as kuris paleidžiamas prieš delete
+    protected static function booted()
+    {
+        static::deleting(function ($story) {
+            // Ištrinam cover nuotrauką jeigu yra
+            if ($story->cover_image) {
+                Storage::disk('public')->delete($story->cover_image);
+            }
+
+            // Ištrinam avatar nuotrauką jeigu yra
+            if ($story->avatar_image) {
+                Storage::disk('public')->delete($story->avatar_image);
+            }
+
+            // Ištrinam donations jei nėra DB cascade
+            $story->donations()->delete();
+        });
+    }
     
     public function scopeApproved($query)
     {
