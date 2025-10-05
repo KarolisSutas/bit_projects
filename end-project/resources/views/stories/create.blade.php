@@ -36,9 +36,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
                             </svg>
                         </button>
-
                         @error('full_name') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
-
                     </div>
             
                     <div class="relative sm:col-span-2">
@@ -58,9 +56,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
                             </svg>
                         </button>
-
                         @error('story_title') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
-
                     </div>
             
                     <div class="relative w-full">
@@ -111,7 +107,7 @@
                             name="cover_image" 
                             type="file" 
                             accept="image/*"
-                            class="block w-full text-sm text-slate-700 border border-stone-300 ring-1 ring-stone-300 rounded-lg cursor-pointer bg-white focus:outline-none file:bg-lime-400"
+                            class="block w-full text-sm text-slate-700 border border-stone-300 ring-1 ring-stone-300 rounded-lg cursor-pointer bg-white focus:outline-none file:bg-lime-400 hover:file:bg-lime-700"
                         >
                         @error('cover_image') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
                     </div>
@@ -123,7 +119,7 @@
                             name="avatar_image" 
                             type="file" 
                             accept="image/*"
-                            class="block w-full text-sm text-slate-700 border border-stone-300 ring-1 ring-stone-300 rounded-lg cursor-pointer bg-white focus:outline-none file:bg-lime-400"
+                            class="block w-full text-sm text-slate-700 border border-stone-300 ring-1 ring-stone-300 rounded-lg cursor-pointer bg-white focus:outline-none file:bg-lime-400 hover:file:bg-lime-700"
                         >
                         @error('avatar_image') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
                     </div>

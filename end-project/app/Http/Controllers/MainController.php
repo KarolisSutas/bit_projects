@@ -30,7 +30,7 @@ class MainController extends Controller
         })
         ->orderBy('is_completed', 'asc')
         ->orderBy('updated_at', 'desc')
-        ->get();
+        ->paginate(8)->withQueryString();
 
         
         $data = [

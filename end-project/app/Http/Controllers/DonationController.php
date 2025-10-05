@@ -35,10 +35,11 @@ class DonationController extends Controller
             if (isset($story->required_amount)) {
                 $story->is_completed = $story->collected_amount >= (int)$story->required_amount;
             }
-    
+            
             $story->save();
+            
         });
         return redirect()->route('main.show', $story)
-        ->with('info', 'This story has already been completed. Donations are closed.');
+        ->with('info', 'Thank you for squeezing Lime Together!');
     }
 }

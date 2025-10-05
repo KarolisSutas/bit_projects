@@ -60,6 +60,7 @@
                         placeholder="€0" required
                         value="{{ old('donated_amount') }}"
                     />
+                    @error('donated_amount') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
                 </div>
                 <div class="mt-2 space-x-4">
                     <x-button type="submit">Donate</x-button>
