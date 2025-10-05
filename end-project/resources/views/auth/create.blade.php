@@ -45,7 +45,6 @@
         @enderror
       </div>
 
-      {{-- Remember + Register link --}}
       <div class="mb-8 flex items-center justify-between text-sm font-medium">
         <label for="remember" class="inline-flex items-center space-x-2">
           <input

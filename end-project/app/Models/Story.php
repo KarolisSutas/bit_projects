@@ -84,8 +84,8 @@ class Story extends Model
                 Storage::disk('public')->delete($story->avatar_image);
             }
 
-            // Ištrinam donations jei nėra DB cascade
-            $story->donations()->delete();
+            // // Ištrinam donations jei nėra DB cascade
+            // $story->donations()->delete();
         });
     }
     

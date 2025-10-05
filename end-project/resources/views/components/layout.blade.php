@@ -17,6 +17,7 @@
     @vite([  'resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="mx-auto mt-10 max-w-2xl bg-gradient-to-r from-cyan-50 to-emerald-100 text-lime-950">
+  
 <div class="relative min-h-screen">
 
   <div aria-hidden="true" class="bg-animated">
@@ -93,13 +94,15 @@
     </div>
   </nav> 
 
+  <x-alert-msg />
+
     <div class="px-4 py-6">
       <span class="block py-2 px-3 mb-2 text-sm text-indigo-500 md:p-0">
         {{ auth()->user()->name ?? null }}
       </span>
       {{ $slot }}
     </div>
-  </main>
+  
 </div>
 
 </body>

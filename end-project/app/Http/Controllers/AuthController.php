@@ -27,10 +27,10 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/main');
+            return redirect()->intended('/main')->with('success', 'You are signed in!');
         } else {
             return redirect()->back()
-                ->with('error', 'Invalid credentials');
+                ->with('warning', 'Invalid credentials');
         }
     }
 
@@ -42,7 +42,7 @@ class AuthController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
 
-        return redirect('/main');
+        return redirect()->route('main.index')->with('info', 'You are logged out!');
     }
 
     public function signup()
@@ -67,6 +67,6 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect('/main');
+        return redirect()->route('main.index')->with('success', 'Account created!');
     }
 }

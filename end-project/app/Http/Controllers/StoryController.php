@@ -103,8 +103,21 @@ class StoryController extends Controller
         //
     }
 
+
+    private function canDelete(Story $story): bool
+    {
+        $hasDonations = $story->donations()->exists();
+        return !$story->is_approved && !$story->is_completed;
+    }
+
     public function delete(Story $story)
     {
+
+        if (!$this->canDelete($story)) {
+            return redirect()
+                ->route('stories.show', $story->id)
+                ->with('danger', 'Deleting this story would erase important data!');
+        }
         return view('stories.delete', compact('story'));
     }
 
@@ -113,10 +126,16 @@ class StoryController extends Controller
      */
     public function destroy(Story $story)
     {
+        if (!$this->canDelete($story)) {
+            return redirect()
+                ->route('stories.show', $story->id)
+                ->with('danger', 'Deleting this story would erase important data!');
+        }
+
         $story->delete();
 
         return redirect()
             ->route('stories.index')
-            ->with('status', 'Istorija sėkmingai ištrinta.');
+            ->with('success', 'Story deleted succesfully.');
     }
 }

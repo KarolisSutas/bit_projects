@@ -19,6 +19,7 @@ class DonationController extends Controller
             'donated_amount'  => ['required','integer','min:1'],
         ]);
 
+
         DB::transaction(function () use ($validated, $story) {
             // 1) Sukuriam auką
             $story->donations()->create([
@@ -38,6 +39,6 @@ class DonationController extends Controller
             $story->save();
         });
         return redirect()->route('main.show', $story)
-        ->withErrors('This story has already been completed. Donations are closed.');
+        ->with('info', 'This story has already been completed. Donations are closed.');
     }
 }

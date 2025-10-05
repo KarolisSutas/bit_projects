@@ -46,13 +46,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register')->name('register.store'); 
 });
 
-
 Route::middleware('auth')->group(function () {
-        Route::get('/story/create', [StoryController::class, 'create'])->name('stories.create');
+    Route::resource('stories', StoryController::class)->only(['create', 'store']);
 });
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::resource('stories', StoryController::class);
+    Route::resource('stories', StoryController::class)->except(['create', 'store']);
 });
 
 

@@ -22,12 +22,12 @@ class StoreStoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => 'required|string|max:255|min:1',
+            'full_name' => 'required|string|max:255|min:5',
             'story_title' => 'required|string|max:255|min:3',
             'required_amount' => 'required|integer|min:1',
             'description' => 'required|string',
             'category' => 'required|string|in:health,education,travel,hobbies',
-            'cover_image' => 'nullable|image|mimes:jpg,jpeg,png, webp|max:4096',
+            'cover_image' => 'required|image|mimes:jpg,jpeg,png, webp|max:4096',
             'avatar_image' => 'nullable|image|mimes:jpg,jpeg,png, webp|max:2048',
         ];
     }
