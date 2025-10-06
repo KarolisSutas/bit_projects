@@ -28,11 +28,8 @@ Route::put('stories/{story}/toggle-approve', function (Story $story) {
     return back()->with('success', 'Story status updated!');
 })->name('stories.toggle-approve');
 
-// visų istorijų sąrašas
 Route::get('/stories', [StoryController::class, 'index'])->name('stories.index');
-// istorijos ištrynimo patvirtinimo langas
 Route::get('/stories/{story}/delete', [StoryController::class, 'delete'])->name('stories.delete');
-// ištrynimo veiksmas
 Route::delete('/stories/{story}', [StoryController::class, 'destroy'])->name('stories.destroy');
 
 

@@ -40,7 +40,6 @@ class StoryController extends Controller
             $stories->where('is_completed', 1);
         };
     
-        // Bendras rūšiavimas tarp likusių
         $stories->latest('created_at');
 
         return view('stories.index', ['stories' => $stories->paginate(10)->withQueryString()]);
@@ -60,10 +59,8 @@ class StoryController extends Controller
    
     public function store(StoreStoryRequest $request)
     {
-        // 1. validacija
         $data = $request->validated();
     
-        // 2. įkeliam paveikslėlį, jei yra
         if ($request->hasFile('cover_image')) {
             $data['cover_image'] = $request->file('cover_image')->store('stories/covers', 'public');
         }
@@ -71,10 +68,8 @@ class StoryController extends Controller
             $data['avatar_image'] = $request->file('avatar_image')->store('stories/avatars', 'public');
         }
     
-        // 3. sukuriam įrašą DB
         Story::create($data);
     
-        // 4. redirect su pranešimu
         return redirect()->route('main.index')->with('success', 'Story created!');
     }
     
