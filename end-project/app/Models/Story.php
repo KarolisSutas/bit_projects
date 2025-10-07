@@ -85,7 +85,7 @@ class Story extends Model
             }
 
             // // Ištrinam donations jei nėra DB cascade
-            // $story->donations()->delete();
+            $story->donations()->delete();
         });
     }
     
