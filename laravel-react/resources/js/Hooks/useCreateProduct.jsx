@@ -11,7 +11,7 @@ export default function useCreateProduct(url) {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.post(url + '/shop/products', data);
+            const response = await axios.post(url + '/shop/products', data, { withCredentials: true });
             return response.data;
         } catch (err) {
             setError(err.response.data); // nustatome klaidos būseną su serverio atsakymu
