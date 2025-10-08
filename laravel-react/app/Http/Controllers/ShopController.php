@@ -18,7 +18,11 @@ class ShopController extends Controller
      */
     public function index()
     {
-
+        $products = Shop::all();
+ 
+        return Inertia::render('Shop/List', [
+            'products' => $products
+        ]);
     }
 
     /**
@@ -34,6 +38,9 @@ class ShopController extends Controller
      */
     public function store(StoreShopRequest $request)
     {
+
+        sleep(2); //stimuliuojame velavyma
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = time() . '_' . $file->getClientOriginalName();
@@ -56,15 +63,16 @@ class ShopController extends Controller
         } else {
             $filePath = null;
         }
-    
-        Shop::create([
+        
+        $product = Shop::create([
             ...$request->validated(),
             'image_path' => $filePath,
         ]);
     
         return response()->json([
             'success' => true,
-            'message' => 'Product created successfully'
+            'id' => $product->id,
+            'message' => 'Product created successfully!'
         ], 201);
     }
     

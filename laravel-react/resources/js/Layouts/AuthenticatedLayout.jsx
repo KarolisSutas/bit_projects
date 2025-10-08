@@ -4,6 +4,8 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
+import Messages from '@/Components/Messages';
+import Delete from '@/Pages/Shop/Delete';
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -23,6 +25,12 @@ export default function Authenticated({ user, header, children }) {
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
+                                </NavLink>
+                                <NavLink href={route('shop.products.create')} active={route().current('shop.products.create')}>
+                                    Add Product
+                                </NavLink>
+                                <NavLink href={route('shop.products.index')} active={route().current('shop.products.index')}>
+                                    Product List
                                 </NavLink>
                             </div>
                         </div>
@@ -120,6 +128,8 @@ export default function Authenticated({ user, header, children }) {
             )}
 
             <main>{children}</main>
+            <Messages />
+            <Delete />
         </div>
     );
 }
