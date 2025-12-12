@@ -37,11 +37,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         
-        Story::factory(30)->create()->each(function ($story) {
-            Donation::factory(5)->create([
-                'story_id' => $story->id,
-            ]);
-        });
+        // Story::factory(30)->create()->each(function ($story) {
+        //     Donation::factory(5)->create([
+        //         'story_id' => $story->id,
+        //     ]);
+        // });
 
     }
 }

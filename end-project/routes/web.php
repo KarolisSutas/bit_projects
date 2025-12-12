@@ -50,5 +50,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('stories', StoryController::class)->except(['create', 'store']);
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/my-stories', [MyStoriesController::class, 'index'])->name('my-stories.index');
+    Route::get('/my-stories/{story}/edit', [MyStoriesController::class, 'edit'])->name('my-stories.edit');
+    Route::put('/my-stories/{story}', [MyStoriesController::class, 'update'])->name('my-stories.update');
+    Route::delete('/my-stories/{story}', [MyStoriesController::class, 'destroy'])->name('my-stories.destroy');
+});
+
 
     

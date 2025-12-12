@@ -11,9 +11,9 @@ return new class extends Migration {
         $table->id(); // BIGINT UNSIGNED
         $table->string('company_name');
         $table->foreignIdFor(\App\Models\User::class)
-              ->nullable()
-              ->constrained()
-              ->nullOnDelete();
+            ->nullable()
+            ->constrained()
+            ->nullOnDelete();
         $table->timestamps();
     });
 
@@ -27,8 +27,8 @@ return new class extends Migration {
     // 2) FK (fiksuotas vardas)
     Schema::table('job_posts', function (Blueprint $table) {
         $table->foreign('employer_id', 'fk_job_posts_employer')
-              ->references('id')->on('employers')
-              ->cascadeOnDelete();
+            ->references('id')->on('employers')
+            ->cascadeOnDelete();
     });
 }
 

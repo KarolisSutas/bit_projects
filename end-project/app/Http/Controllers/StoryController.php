@@ -47,7 +47,7 @@ class StoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only(['create', 'store', 'stories']);
+        $this->middleware('auth')->only(['create', 'store', 'stories']); // pažiūrėti ar reikia 'stories'
     }
     
     public function create()
@@ -56,7 +56,7 @@ class StoryController extends Controller
 
     }
 
-   
+
     public function store(StoreStoryRequest $request)
     {
         $data = $request->validated();
@@ -64,15 +64,15 @@ class StoryController extends Controller
         if ($request->hasFile('cover_image')) {
             $data['cover_image'] = $request->file('cover_image')->store('stories/covers', 'public');
         }
+    
         if ($request->hasFile('avatar_image')) {
             $data['avatar_image'] = $request->file('avatar_image')->store('stories/avatars', 'public');
         }
     
-        Story::create($data);
+        $request->user()->stories()->create($data);
     
         return redirect()->route('main.index')->with('success', 'Story created!');
-    }
-    
+    }        
 
     /**
      * Display the specified resource.

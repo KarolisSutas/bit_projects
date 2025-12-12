@@ -15,7 +15,7 @@ class MainController extends Controller
         ->when($request->filled('search'), function ($query) use ($request) {
             $query->where(function ($query) use ($request) {
                 $query->where('full_name', 'like', '%'.$request->input('search').'%')
-                  ->orWhere('story_title', 'like', '%'.$request->input('search').'%');
+                ->orWhere('story_title', 'like', '%'.$request->input('search').'%');
             });
         })
         

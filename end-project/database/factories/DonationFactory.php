@@ -19,7 +19,7 @@ class DonationFactory extends Factory
     {
         return [
             'story_id' => Story::factory(),
-            'donor_full_name' => fake()->name,
+            'donor_full_name' => fake()->name(),
             'is_anonymous' => fake()->boolean(30),
             'donated_amount' => fake()->numberBetween(10, 5_000),
         ];

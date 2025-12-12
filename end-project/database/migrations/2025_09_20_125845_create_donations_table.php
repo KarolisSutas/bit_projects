@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             // Ryšys su istorija (kiekviena auka priklauso vienai istorijai)
             $table->foreignId('story_id')
-                  ->constrained('stories')
-                  ->cascadeOnDelete();
+                ->constrained('stories')
+                ->cascadeOnDelete();
             $table->string('donor_full_name')->nullable();
             $table->boolean('is_anonymous')->default(false);
             $table->decimal('donated_amount', 10, 2)->unsigned();

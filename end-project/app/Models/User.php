@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Story;
 
 class User extends Authenticatable
 {
@@ -14,6 +17,10 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasRoles;
     // HasApiTokens
 
+    public function stories()
+    {
+    return $this->hasMany(Story::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -47,5 +54,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
- 
+
+
 }

@@ -48,7 +48,7 @@
                     <label class="mb-1 flex items-center">
                         <input class="rounded-xl" type="checkbox" name="is_anonymous" value="1"
                         {{ old('is_anonymous') ? 'checked' : '' }}
-                          />
+                        />
                         <span class="m-2 text-xs">Donate anonymous</span>
                     </label>
                 </div>

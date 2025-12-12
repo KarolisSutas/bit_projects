@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Story;
+use App\Models\User;
+use App\Models\Donation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +20,7 @@ class StoryFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => User::factory(),
             'full_name' => fake()->name,
             'story_title' => fake()->sentence(6),
             'description' => fake()->paragraph(4, true),
